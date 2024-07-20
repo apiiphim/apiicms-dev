@@ -1,0 +1,40 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>系统安全验证</title>
+{include file="block/include"}
+</head>
+<body>
+{php}
+  $verify_type=$type;
+{/php}
+{include file="block/head"}
+<div class="container mini-container ewave-full-height">
+  <div class="panel paner-default ewave-jump-msg">
+    <div class="panel-header">
+      <h3 class="text-theme text-center">安全验证...</h3>
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal ewave-form" action="{:mac_url('ajax/verify_check')}" method="post" data-jump="refresh-wait">
+        <input type="hidden" name="type" value="{$verify_type}">
+        <div class="form-group"></div>
+        <div class="form-group">
+          <div class="col-xs-6">
+            <input class="form-control p-lg-0 p-xl-0 p-xxl-0 text-center" name="verify" type="text" placeholder="Mã xác nhận" autocomplete="off" data-tip="Vui lòng nhập mã xác nhận">
+          </div>
+          <div class="col-xs-6"> <img class="form-control p-0 ewave-verify-img" src="{:mac_url('verify/index')}" title="Đổi mã khác"></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <input type="submit" class="form-control btn btn-block btn-theme" value="提交验证">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

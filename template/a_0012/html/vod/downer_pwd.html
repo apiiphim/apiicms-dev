@@ -1,0 +1,37 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>Thông báo từ hệ thống......</title>
+{include file="block/include"}
+<style>
+body {
+  background-color: #000;
+}
+</style>
+</head>
+<body>
+<div class="ewave-jump-msg ewave-absolute-center">
+  <h3 class="text-theme text-center hidden-xs">Thông báo từ hệ thống...</h3>
+  <h4 class="text-center">亲爱的下载此数据需要密码哦~~~</h4>
+  <form class="ewave-form form-horizontal" action="{:mac_url('ajax/pwd')}" method="get">
+    <input type="hidden" name="id" value="{$obj.vod_id}">
+    <input type="hidden" name="mid" value="{$maccms.mid}">
+    <input type="hidden" name="type" value="5">
+    <div class="form-group">
+      <div class="col-xs-12">
+        <div class="input-group">
+          <input type="password" name="pwd" class="form-control" placeholder="请输入下载密码" required autocomplete="off">
+          <span class="input-group-btn"> {if !empty($obj.vod_pwd_down_url)} <a class="btn member-btn btn-theme" href="{$obj.vod_pwd_down_url}" target="_blank" title="获取访问密码">获取密码</a> {else/} <span class="btn member-btn btn-theme">密码：{$obj.vod_pwd_down}</span> {/if} </span> </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <button type="submit" class="btn member-btn btn-block btn-theme bg-theme text-white ewave-submit">点击确认</button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

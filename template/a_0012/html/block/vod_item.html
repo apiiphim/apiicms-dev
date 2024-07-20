@@ -1,0 +1,15 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<div class="pic"><a href="{$vo|mac_url_vod_detail}" title="{$vo.vod_name}">
+          <div class="img-wrapper lazyload img-wrapper-pic" data-original="{$vo.vod_pic|mac_url_img}" data-background="{$vo.vod_pic|mac_url_img}"></div>
+          {if $big_item==1}
+          <div class="img-wrapper lazyload img-wrapper-slide hidden-xs hidden-sm hidden-md" data-original="{if !empty($vo.vod_pic_slide)}{$vo.vod_pic_slide|mac_url_img}{else/}{$vo.vod_pic|mac_url_img}{/if}"></div>
+          {/if}
+          </a></div>
+          <div class="name">
+            <h3><a href="{$vo|mac_url_vod_detail}" title="{$vo.vod_name}" {if !empty($vo.vod_color)} style="color:#{$vo.vod_color};"{/if}>{$vo.vod_name}</a></h3>
+            <p class="item-status text-overflow">{include file="block/status"}</p>
+            {if $big_item==1}
+            <p class="item-blurb text-row-2 hide hidden-xs hidden-sm">{$vo.vod_blurb}</p>
+            {/if}
+          </div>

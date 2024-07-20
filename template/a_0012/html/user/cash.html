@@ -1,0 +1,110 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{php}$member_page='cash';{/php}
+<title>积分提现 - 会员中心 - {$maccms.site_name}</title>
+<meta name="keywords" content="积分提现">
+<meta name="description" content="积分提现">
+{include file="user/include"/}
+</head>
+<body>
+{include file="user/head"/}
+<div class="container member-container clearfix">
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title">积分提现</h2>
+    <div class="member-tab-list">
+      <ul class="clearfix">
+        <li class="ewave-tab active" data-target="#member-cash-1">提现申请</li>
+        <li class="ewave-tab" data-target="#member-cash-2">提现记录</li>
+      </ul>
+    </div>
+    {if $GLOBALS.config.user.cash_status==1}
+    <form class="form-horizontal center-block ewave-form ewave-tab-content mt-10" id="member-cash-1" action="{:mac_url('user/cash')}" method="post" data-jump="refresh-wait">
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label">剩余积分</label>
+        <div class="col-xs-8 col-xl-6">
+          <p class="form-control-static pt-xs-0 pt-sm-0"><span class="text-red">{$GLOBALS['user']['user_points']}</span>（相当于<span class="text-red">{$GLOBALS['user']['user_points']/$GLOBALS['config']['user']['cash_ratio']}</span>元）</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label">提现中积分</label>
+        <div class="col-xs-8 col-xl-6">
+          <p class="form-control-static pt-xs-0 pt-sm-0"><span class="text-red">{$GLOBALS['user']['user_points_froze']}</span>（相当于<span class="text-red">{$GLOBALS['user']['user_points_froze']/$GLOBALS['config']['user']['cash_ratio']}</span>元）</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">银行名称</label>
+        <div class="col-sm-8 col-xl-6">
+          <input type="text" name="cash_bank_name" class="form-control" placeholder="请输入开户行名称或支付宝微信" value="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">银行账号</label>
+        <div class="col-sm-8 col-xl-6">
+          <input type="text" name="cash_bank_no" class="form-control" placeholder="请输入银行卡号或支付宝微信账号" value="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">收款姓名</label>
+        <div class="col-sm-8 col-xl-6">
+          <input type="text" name="cash_payee_name" class="form-control" placeholder="请输入收款人姓名与上方账户对应"  value="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">提现金额</label>
+        <div class="col-sm-8 col-xl-6">
+          <input type="text" name="cash_money" class="form-control" placeholder="请输入提现金额"  value="">
+          <span class="help-block">1元等于<span class="text-red">{$GLOBALS['config']['user']['cash_ratio']}</span>积分，最低提现金额：<span class="text-red">{$GLOBALS['config']['user']['cash_min']}</span>元</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-8 col-xl-6">
+          <button type="submit" class="btn member-btn btn-block btn-theme ewave-submit">提交</button>
+        </div>
+      </div>
+    </form>
+    {else/}
+    <div class="member-empty text-center"><i class="fa fa-warning"></i>&nbsp;本站当前未开启积分提现功能</div>
+    {/if}
+    <div class="ewave-tab-content mt-10" id="member-cash-2" style="display:none;">
+    <form class="form-horizontal center-block" action="{:mac_url('user/cash_del')}">
+      <div class="member-function-box">
+        <a href="javascript:;" onClick="MAC.CheckBox.All('ids[]');">全选</a>
+        <a href="javascript:;" onClick="MAC.CheckBox.Other('ids[]');">反选</a>
+        <a class="member-delete" href="javascript:;" data-tip="确定要删除选中的提现记录吗？" data-all="0">删除</a>
+        <a class="member-clear" href="javascript:;" data-tip="确定要清空提现记录吗？" data-all="1">清空</a>
+      </div>
+      <table class="table">
+        <tr>
+          <td style="width:66px;">选择</td>
+          <td class="hidden-xs" style="width:80px;">编号</td>
+          <td style="width:100px;">提现积分</td>
+          <td style="width:100px;">提现金额</td>
+          <td style="width:100px;">状态</td>
+          <td class="hidden-xs" style="width:140px;">时间</td>
+          <td style="width:100px;">操作</td>
+        </tr>
+        {volist name="list" id="vo"}
+        <tr>
+          <td><input type="checkbox" name="ids[]" value="{$vo.cash_id}"/></td>
+          <td class="hidden-xs">{$vo.cash_id}</td>
+          <td>{$vo.cash_points}</td>
+          <td>{$vo.cash_money}</td>
+          <td>{if condition="$vo.cash_status eq '1'"}已审核{else/}未审核{/if}</td>
+          <td class="hidden-xs">{$vo.cash_time|mac_day}</td>
+          <td><a href="javascript:;" class="member-delete-one" data-tip="确定要删除这条记录吗？" data-all="0" data-id="{$vo.cash_id}">删除</a></td>
+        </tr>
+        {/volist}
+      </table>
+    </form>
+    {include file="user/paging"}
+    </div>
+  </div>
+</div>
+{include file="user/foot"/}
+</body>
+</html>

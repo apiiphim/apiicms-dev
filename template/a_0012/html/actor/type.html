@@ -1,0 +1,94 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{php}
+  $sexArray=explode(',','男,女,变性,保密');
+  $areaArray=explode(',','大陆,香港,台湾,美国,韩国,日本,泰国,新加坡,马来西亚,印度,英国,法国,加拿大,西班牙,俄罗斯,其他');
+  $bloodArray=explode(',','A型,B型,AB型,O型');
+  $starsignArray=explode(',','白羊座,金牛座,双子座,巨蟹座,狮子座,处女座,天枰座,天蝎座,射手座,摩羯座,水瓶座,双鱼座');
+  $letterArray=range('A','Z');
+  if(!empty($obj['childids'])){
+    $parent_obj=$obj;
+  }elseif(!empty($obj['parent'])){
+    $parent_obj=$obj['parent'];
+  }
+{/php}
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="category-box layout-box gap">
+    <dl>
+      <dt><span>分类</span></dt>
+      <dd class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper"> {maccms:type mid="8" num="120" by="sort" order="asc"} <a class="swiper-slide{if $vo.type_id==$obj.type_id} active{/if}" href="{:mac_url_type($vo,[],show)}">{$vo.type_name}</a> {/maccms:type} </div>
+      </dd>
+    </dl>
+    {if !empty($sexArray)}
+    <dl class="clearfix">
+      <dt><span>性别</span></dt>
+      <dd class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper"> <a class="swiper-slide{if empty($param.sex)} active{/if}"  href="{:mac_url_type($obj,['area'=>$param.area,'blood'=>$param.blood,'starsign'=>$param.starsign,'letter'=>$param.letter],show)}">Tất cả</a> {maccms:foreach name="$sexArray"} <a class="swiper-slide{if $param.sex==$vo} active{/if}" href="{:mac_url_type($obj,['sex'=>$vo,'area'=>$param.area,'blood'=>$param.blood,'starsign'=>$param.starsign,'letter'=>$param.letter],show)}">{$vo}</a> {/maccms:foreach} </div>
+      </dd>
+    </dl>
+    {/if}
+    {if !empty($areaArray)}
+    <dl class="clearfix">
+      <dt><span>Quốc gia</span></dt>
+      <dd class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper"> <a class="swiper-slide{if empty($param.area)} active{/if}" href="{:mac_url_type($obj,['sex'=>$param.sex,'blood'=>$param.blood,'starsign'=>$param.starsign,'letter'=>$param.letter],show)}">Tất cả</a> {maccms:foreach name="$areaArray"} <a class="swiper-slide{if $param.area==$vo} active{/if}" href="{:mac_url_type($obj,['sex'=>$param.sex,'area'=>$vo,'blood'=>$param.blood,'starsign'=>$param.starsign,'letter'=>$param.letter],show)}">{$vo}</a> {/maccms:foreach} </div>
+      </dd>
+    </dl>
+    {/if}
+    {if !empty($bloodArray)}
+    <dl class="clearfix">
+      <dt><span>血型</span></dt>
+      <dd class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper"> <a class="swiper-slide{if empty($param.blood)} active{/if}" href="{:mac_url_type($obj,['sex'=>$param.sex,'area'=>$param.area,'starsign'=>$param.starsign,'letter'=>$param.letter],show)}">Tất cả</a> {maccms:foreach name="$bloodArray"} <a class="swiper-slide{if $param.blood==$vo} active{/if}" href="{:mac_url_type($obj,['sex'=>$param.sex,'area'=>$param.area,'blood'=>$vo,'starsign'=>$param.starsign,'letter'=>$param.letter],show)}">{$vo}</a> {/maccms:foreach} </div>
+      </dd>
+    </dl>
+    {/if}
+    {if !empty($starsignArray)}
+    <dl class="clearfix">
+      <dt><span>星座</span></dt>
+      <dd class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper"> <a class="swiper-slide{if empty($param.starsign)} active{/if}" href="{:mac_url_type($obj,['sex'=>$param.sex,'area'=>$param.area,'blood'=>$param.blood,'letter'=>$param.letter],show)}">Tất cả</a> {maccms:foreach name="$starsignArray"} <a class="swiper-slide{if $param.starsign==$vo} active{/if}" href="{:mac_url_type($obj,['sex'=>$param.sex,'area'=>$param.area,'blood'=>$param.blood,'starsign'=>$vo,'letter'=>$param.letter],show)}">{$vo}</a> {/maccms:foreach} </div>
+      </dd>
+    </dl>
+    {/if}
+    {if !empty($letterArray)}
+    <dl class="clearfix">
+      <dt><span>字母</span></dt>
+      <dd class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper"> <a class="swiper-slide{if empty($param.letter)} active{/if}" href="{:mac_url_type($obj,['sex'=>$param.sex,'area'=>$param.area,'blood'=>$param.blood,'starsign'=>$param.starsign],show)}">Tất cả</a> {maccms:foreach name="$letterArray"} <a class="swiper-slide{if $param.letter==$vo} active{/if}" href="{:mac_url_type($obj,['sex'=>$param.sex,'area'=>$param.area,'blood'=>$param.blood,'starsign'=>$param.starsign,'letter'=>$vo],show)}">{$vo}</a> {/maccms:foreach} </div>
+      </dd>
+    </dl>
+    {/if} </div>
+  <div class="layout-box gap">
+    <div class="vod-list actor-list gap">
+      <h2> <a class="pull-left" href="{$type|mac_url_type}">{$type.type_name}</a>
+        <div class="type"><span class="small">Tổng&nbsp;<span class="ewave-total">0</span> phim&nbsp;·&nbsp;trên {$param.page} trang</span></div>
+      </h2>
+      <ul class="row">
+        {php}
+        if($maccms['aid']==81){
+        $myPageUrl='actor/type';
+        }elseif($maccms['aid']==82){
+        $myPageUrl='actor/show';
+        }
+        {/php}
+        {maccms:actor num="36" paging="yes" half="3" order="desc" by="time" pageurl="'.$myPageUrl.'"}
+        <li class="col-xs-4 col-md-3 col-lg-2"> {include file="block/actor_item"} </li>
+        {/maccms:actor}
+      </ul>
+      {include file="block/paging"}
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

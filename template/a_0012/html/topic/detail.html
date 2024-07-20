@@ -1,0 +1,53 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="topic-detail layout-box gap">
+    <div class="row">
+      <div class="topic-detail-cover col-xs-12 col-md-4">
+        <div class="img-wrapper h lazyload" data-original="{$obj.topic_pic|mac_url_img}"></div>
+      </div>
+      <div class="topic-detail-info col-xs-12 col-md-8">
+        <h1 class="topic-detail-title gap"{if !empty($obj.topic_color)} style="color:#{$obj.topic_color};"{/if}>{$obj.topic_name}</h1>
+        <p class="topic-detail-desc">{$obj.topic_content|mac_filter_html}</p>
+      </div>
+    </div>
+  </div>
+  {if !empty($obj.vod_list)}
+  <div class="layout-box gap">
+    <div class="vod-list">
+      <h2> <span class="pull-left">收录视频</span>
+        <div class="type"><span class="small">共收录<span class="ewave-total">{$obj.vod_list|count}</span>个视频</span></div>
+      </h2>
+      <ul class="row">
+        {maccms:foreach name="$obj.vod_list"}
+        <li class="col-xs-4 col-md-3 col-lg-2"> {include file="block/vod_item"} </li>
+        {/maccms:foreach}
+      </ul>
+    </div>
+  </div>
+  {/if}
+  {if !empty($obj.art_list)}
+  <div class="layout-box gap">
+    <div class="art-box topic-art-box">
+      <h2><span class="pull-left">收录文章</span>
+        <div class="type"><span class="small">共收录<span class="ewave-total">{$obj.art_list|count}</span>篇文章</span></div>
+      </h2>
+      <ul class="art-list row clearfix">
+        {maccms:foreach name="$obj.art_list"}
+        <div class="col-xs-12 col-lg-6 gap"> {include file="block/art_item"} </div>
+        {/maccms:foreach}
+      </ul>
+    </div>
+  </div>
+  {/if} </div>
+{include file="block/foot"} <span class="mac_hits hide" data-mid="{$maccms.mid}" data-id="{$obj.topic_id}" data-type="insert"></span>
+</body>
+</html>

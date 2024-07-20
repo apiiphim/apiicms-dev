@@ -1,0 +1,122 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<div class="container py-3">
+
+    <form method="post" action="" id="form1">
+
+        <div class="row mb-4">
+            <div class="col-2">
+                <label for="vodtype" class="form-label">{:lang('vod')}{:lang('type')}:</label>
+                <select name="vodtype[]" id="vodtype" multiple class="form-select" style="height: 150px; width: 200px;">
+                    {volist name="$vod_type_list" id="vo"}
+                    <option value="{$vo.type_id}">{$vo.type_name}</option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="col-10 d-flex align-items-end">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=type&tab=vod');">{:lang('admin/make/select_type')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=type&tab=vod&vodtype={$vod_type_ids}');">{:lang('admin/make/all_type')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=type&tab=vod&vodtype={$vod_type_ids_today}&ac2=day');">{:lang('admin/make/today_type')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=vod');">{:lang('admin/make/select_info')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=vod&vodtype={$vod_type_ids}');">{:lang('admin/make/all_info')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=vod&vodtype={$vod_type_ids_today}&ac2=day');">{:lang('admin/make/today_info')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=vod&ac2=nomake');">{:lang('admin/make/no_make_info')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=vod&vodtype={$vod_type_ids_today}&ac2=day&jump=1');">{:lang('admin/make/one_today')}</button>
+                </div>
+            </div>
+            <div class="col-2">
+                <label for="arttype" class="form-label">{:lang('art')}{:lang('type')}:</label>
+                <select name="arttype[]" id="arttype" multiple class="form-select" style="height: 150px;">
+                    {volist name="$art_type_list" id="vo"}
+                    <option value="{$vo.type_id}">{$vo.type_name}</option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="col-10 d-flex align-items-end">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=type&tab=art');">{:lang('admin/make/select_type')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=type&tab=art&arttype={$art_type_ids}');">{:lang('admin/make/all_type')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=type&tab=art&arttype={$art_type_ids_today}&ac2=day');">{:lang('admin/make/today_type')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=art');">{:lang('admin/make/select_info')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=art&arttype={$art_type_ids}');">{:lang('admin/make/all_info')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=art&arttype={$art_type_ids_today}&ac2=day');">{:lang('admin/make/today_info')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=art&ac2=nomake');">{:lang('admin/make/no_make_info')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=info&tab=art&arttype={$art_type_ids_today}&ac2=day&jump=1');">{:lang('admin/make/one_today')}</button>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row mb-4">
+            <div class="col-2">
+                <label for="topic" class="form-label">{:lang('admin/make/topic_list')}:</label>
+                <select name="topic[]" id="topic" multiple class="form-select" style="height: 150px;">
+                    {volist name="$topic_list" id="vo"}
+                    <option value="{$vo.topic_id}">{$vo.topic_name}</option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="col-10 d-flex align-items-end">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=topic_info');">{:lang('admin/make/select_topic')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=topic_info&topic={$topic_ids}');">{:lang('admin/make/all_topic')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=topic_index');">{:lang('admin/make/topic_index')}</button>
+                </div>
+            </div>
+            <div class="col-2">
+                <label for="label" class="form-label">{:lang('admin/make/label_page')}:</label>
+                <select name="label[]" id="label" multiple class="form-select" style="height: 150px;">
+                    {volist name="$label_list" id="vo"}
+                    <option value="{$vo}">{$vo}</option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="col-10 d-flex align-items-end">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=label');">{:lang('make_page')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=label&label={$label_ids}');">{:lang('make_all')}</button>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row mb-4">
+            <div class="col-2">
+                <label class="form-label">SiteMap:</label>
+            </div>
+            <div class="col-md-2">
+                <label for="ps" class="form-label">{:lang('admin/make/make_page_num')}:</label>
+                <input type="text" name="ps" id="ps" class="form-control" value="1">
+            </div>
+            <div class="col-8 d-flex align-items-end">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=rss&ac2=index');">{:lang('admin/make/rss')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=rss&ac2=google');">{:lang('admin/make/google')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=rss&ac2=baidu');">{:lang('admin/make/baidu')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=rss&ac2=so');">{:lang('admin/make/so')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=rss&ac2=sogou');">{:lang('admin/make/sogou')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=rss&ac2=bing');">{:lang('admin/make/bing')}</button>
+                    <button type="button" class="btn btn-primary me-1" onclick="post('ac=rss&ac2=sm');">{:lang('admin/make/sm')}</button>
+                </div>
+            </div>
+            
+        </div>
+
+    </form>
+
+</div>
+
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+    var curUrl = "{:url('make')}";
+    function post(p) {
+        $("#form1").attr("action", curUrl + "?" + p);
+        $("#form1").submit();
+    }
+</script>
+</body>
+</html>

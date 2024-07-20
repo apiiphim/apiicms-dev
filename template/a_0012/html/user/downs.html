@@ -1,0 +1,53 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{php}$member_page='downs';{/php}
+<title>下载记录 - 会员中心 -{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}"/>
+<meta name="description" content="{$maccms.site_description}"/>
+{include file="user/include"/}
+</head>
+<body>
+{include file="user/head"/} 
+<div class="container member-container clearfix">
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title">下载记录</h2>
+    <form class="form-horizontal center-block">
+      <input type="hidden" name="type" value="5" action="{:mac_url('user/ulog_del')}">
+      <div class="member-function-box">
+        <a href="javascript:;" onClick="MAC.CheckBox.All('ids[]');">全选</a>
+        <a href="javascript:;" onClick="MAC.CheckBox.Other('ids[]');">反选</a>
+        <a class="member-delete" href="javascript:;" data-tip="确定要删除选中的下载记录吗？" data-all="0">删除</a>
+        <a class="member-clear" href="javascript:;" data-tip="确定要清空下载记录吗？" data-all="1">清空</a>
+      </div>
+      <ul class="member-data">
+        {volist name="list" id="vo"}
+        {if condition="$vo.ulog_mid eq 1"}
+        <li class="member-data-item clearfix">
+          <div class="member-data-checkbox"><input type="checkbox" name="ids[]" value="{$vo.ulog_id}"/></div>
+          <div class="member-data-infobox clearfix">
+            <div class="member-data-cover"><a class="img-wrapper lazyload" data-original="{$vo.data.pic}" href="{$vo.data.link}" target="_blank"></a></div>
+            <div class="member-data-info">
+              <h4><a href="{$vo.data.link}" target="_blank">{$vo.data.type_name} {$vo.data.name}</a><small>[{$vo.ulog_rid}-{$vo.ulog_sid}-{$vo.ulog_nid}]</small></h4>
+              <p>类型：{$vo.data.type.type_name}</p>
+              <p>积分：<strong class="text-theme">{$vo.ulog_points}</strong></p>
+              <p>时间：{$vo.ulog_time|mac_day}</p>
+            </div>
+          </div>
+          <div class="member-data-deletebox">
+            <a href="javascript:;" class="member-data-delete member-delete-one" data-tip="确定要删除这条记录吗？" data-all="0" data-id="{$vo.ulog_id}"><i class="fa fa-trash-o"></i><span class="hidden-xs">&nbsp;删除</span></a>
+          </div>
+        </li>
+        {/if}
+        {/volist}
+      </ul>
+    </form>
+    {include file="user/paging"}
+  </div>
+</div>
+{include file="user/foot"/}
+</body>
+</html>

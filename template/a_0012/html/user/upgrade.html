@@ -1,0 +1,71 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{php}$member_page='upgrade';{/php}
+<title>{if condition="$user.group.group_id lt 3"}升级{else/}续费{/if}会员组 - 会员中心 - {$maccms.site_name}</title>
+<meta name="keywords" content="升级会员组"/>
+<meta name="description" content="升级会员组"/>
+{include file="user/include"/}
+</head>
+<body>
+{include file="user/head"/}
+<div class="container member-container clearfix">
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title">{if condition="$user.group.group_id lt 3"}升级{else/}续费{/if}会员</h2>
+    <form class="form-horizontal center-block">
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label">所属会员组</label>
+        <div class="col-xs-8 col-sm-6">
+          <p class="form-control-static pt-xs-0">{$obj.group.group_name}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label">剩余积分</label>
+        <div class="col-xs-8 col-sm-6">
+          <p class="form-control-static pt-xs-0">{$obj.user_points}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label">到期时间</label>
+        <div class="col-xs-8 col-sm-6">
+          <p class="form-control-static pt-xs-0">{if condition="$obj.group_id lt 3"}无限期{else/}{$obj.user_end_time|mac_day}{/if}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label"></label>
+        <div class="col-xs-8 col-sm-6">
+          <p class="form-control-static pt-xs-0"><span class="text-red">点击需要的会员组和时长进行购买升级</span></p>
+        </div>
+      </div>
+      {volist name="group_list" id="vo"}
+      {if condition="$vo.group_id gt 2 && $vo.group_status eq 1"}
+      <div class="form-group">
+        <label class="col-sm-2 control-label">{$vo.group_name}</label>
+        <div class="col-sm-10">
+          <ul class="row member-upgrade">
+            <li class="col-xs-6 col-md-3 col-lg-6 col-xl-3">
+              <div class="member-upgrade-item ewave-confirm btn member-btn btn-block btn-warning" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_day}" data-long="day" data-action="{:mac_url('user/upgrade')}" data-data="group_id={$vo.group_id}&long=day" data-tip="确定要升级到【{$vo.group_name}】吗,需要花费【{$vo.group_points_day}】积分"> 包天：{$vo.group_points_day}积分 </div>
+            </li>
+            <li class="col-xs-6 col-md-3 col-lg-6 col-xl-3">
+              <div class="member-upgrade-item ewave-confirm btn member-btn btn-block btn-primary" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_week}" data-long="week" data-action="{:mac_url('user/upgrade')}" data-data="group_id={$vo.group_id}&long=week" data-tip="确定要升级到【{$vo.group_name}】吗,需要花费【{$vo.group_points_week}】积分"> 包周：{$vo.group_points_week}积分 </div>
+            </li>
+            <li class="col-xs-6 col-md-3 col-lg-6 col-xl-3">
+              <div class="member-upgrade-item ewave-confirm btn member-btn btn-block btn-danger" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_month}" data-long="month" data-action="{:mac_url('user/upgrade')}" data-data="group_id={$vo.group_id}&long=month" data-tip="确定要升级到【{$vo.group_name}】吗,需要花费【{$vo.group_points_month}】积分"> 包月：{$vo.group_points_month}积分 </div>
+            </li>
+            <li class="col-xs-6 col-md-3 col-lg-6 col-xl-3">
+              <div class="member-upgrade-item ewave-confirm btn member-btn btn-block btn-success" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_year}" data-long="year" data-action="{:mac_url('user/upgrade')}" data-data="group_id={$vo.group_id}&long=year" data-tip="确定要升级到【{$vo.group_name}】吗,需要花费【{$vo.group_points_year}】积分"> 包年：{$vo.group_points_year}积分 </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {/if}
+      {/volist}
+    </form>
+  </div>
+</div>
+{include file="user/foot"/}
+</body>
+</html>

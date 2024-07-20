@@ -1,0 +1,82 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-head">
+        <h3> <i class="fa fa-comments"></i>&nbsp;Ý kiến ​​người sử dụng</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12 col-md-3 pull-right">
+            <div class="panel panel-default">
+              <div class="panel-head">
+                <h3 class="panel-title">Tin nhắn</h3>
+              </div>
+              <div class="panel-body">
+                <form class="form-horizontal ewave-form" action="{$maccms.path}index.php/gbook/saveData" method="post" data-jump="refresh-wait">
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <textarea class="form-control ewave-gbook-content" name="gbook_content" placeholder="Nhập thông tin mà bạn muốn nói với chúng tôi..." rows="3"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-4 pull-right">
+                      <input type="submit" class="form-control btn btn-block btn-theme" value="Gửi">
+                    </div>
+                    {if $gbook.verify eq 1}
+                    <div class="col-xs-4 pull-right"> <img class="form-control p-0 ewave-verify-img" src="{:mac_url('verify/index')}" title="Đổi mã khác"></div>
+                    <div class="col-xs-4 pull-right">
+                      <input class="form-control p-md-0 p-lg-0 text-center" name="verify" type="text" placeholder="Mã xác nhận" autocomplete="off" data-tip="Vui lòng nhập mã xác nhận">
+                    </div>
+                    {/if}
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-9">
+            <div class="panel panel-default">
+              <div class="panel-head">
+                <h3 class="panel-title">Danh sách tin nhắn</h3>
+              </div>
+              <ul class="ewave-comment-item-list">
+                {maccms:gbook num="10" paging="yes" order="desc" by="id"}
+                <li class="ewave-comment-item">
+                  <div class="ewave-comment-avatar"><img src="{$vo.user_id|mac_get_user_portrait}"></div>
+                  <div class="ewave-comment-body">
+                    <div class="ewave-comment-head">
+                      <h3>{$vo.gbook_name}</h3>
+                      <span>{$vo.gbook_time|mac_day}</span>
+                    </div>
+                    <div class="ewave-comment-text"> {$vo.gbook_content}
+                      {if condition="$vo.gbook_reply_time gt 0"}
+                      <p><strong style="color:#f00;">Quản trị viên trả lời:</strong>{$vo.gbook_reply}</p>
+                      {/if}
+                    </div>
+                  </div>
+                </li>
+                {/maccms:gbook}
+              </ul>
+              {include file="block/paging"}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+<script>
+  eWave.Gbook.Login = {$gbook.login};
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container pt-10 gap">
+  <div class="art-box row">
+    <div class="col-xs-12 col-xl-8">
+      <div class="layout-box clearfix gap">
+        <h2><span class="pull-left">Tìm kiếm: {$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}</span><div class="type"><span class="small">共<span class="ewave-total">0</span>篇文章&nbsp;·&nbsp;第{$param.page}页</span></h2>
+        <ul class="art-list clearfix">
+          {maccms:art num="10" paging="yes" half="3" by="time" order="desc" pageurl="art/search"}
+          {include file="block/art_item"}
+          {/maccms:art}
+        </ul>
+        {include file="block/paging"} </div>
+    </div>
+    <div class="hidden-xs hidden-sm hidden-md hidden-lg col-xl-4 ewave-sticky">
+      <div class="layout-box clearfix gap">
+        <div class="index-ranking">
+          <h2>热点新闻</h2>
+        </div>
+        <ul class="ranking-list">
+          {maccms:art num="10" by="hits_week" order="desc"}
+          <li class="ranking-item">{include file="block/art_item_ranking"}</li>
+          {/maccms:art}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

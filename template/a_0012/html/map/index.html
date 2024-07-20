@@ -1,0 +1,115 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{php}
+  if(!empty($obj['type_extend']['class'])) {
+    $classArray=explode(',',$obj['type_extend']['class']);
+  }elseif(!empty($obj['parent']['type_extend']['class'])){
+    $classArray=explode(',',$obj['parent']['type_extend']['class']);
+  }else{
+    $classArray=explode(',',$GLOBALS['config']['app']['vod_extend_class']);
+  }
+  if(!empty($obj['type_extend']['area'])) {
+    $areaArray=explode(',',$obj['type_extend']['area']);
+  }elseif(!empty($obj['parent']['type_extend']['area'])){
+    $areaArray=explode(',',$obj['parent']['type_extend']['area']);
+  }else{
+    $areaArray=explode(',',$GLOBALS['config']['app']['vod_extend_area']);
+  }
+  if(!empty($obj['type_extend']['year'])) {
+    $yearArray=explode(',',$obj['type_extend']['year']);
+  }elseif(!empty($obj['parent']['type_extend']['year'])){
+    $yearArray=explode(',',$obj['parent']['type_extend']['year']);
+  }else{
+    $yearArray=explode(',',$GLOBALS['config']['app']['vod_extend_year']);
+  }
+  if(!empty($obj['type_extend']['lang'])) {
+    $langArray=explode(',',$obj['type_extend']['lang']);
+  }elseif(!empty($obj['parent']['type_extend']['lang'])){
+    $langArray=explode(',',$obj['parent']['type_extend']['lang']);
+  }else{
+    $langArray=explode(',',$GLOBALS['config']['app']['vod_extend_lang']);
+  }
+  if(!empty($obj['type_extend']['version'])) {
+    $versionArray=explode(',',$obj['type_extend']['version']);
+  }elseif(!empty($obj['parent']['type_extend']['version'])){
+    $versionArray=explode(',',$obj['parent']['type_extend']['version']);
+  }else{
+    $versionArray=explode(',',$GLOBALS['config']['app']['vod_extend_version']);
+  }
+  if(!empty($obj['type_extend']['state'])) {
+    $stateArray=explode(',',$obj['type_extend']['state']);
+  }elseif(!empty($obj['parent']['type_extend']['state'])){
+    $stateArray=explode(',',$obj['parent']['type_extend']['state']);
+  }else{
+    $stateArray=explode(',',$GLOBALS['config']['app']['vod_extend_state']);
+  }
+  $letterArray=explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z');
+  if(!empty($obj['childids'])){
+    $parent_obj=$obj;
+  }elseif(!empty($obj['parent'])){
+    $parent_obj=$obj['parent'];
+  }
+{/php}
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container" style="margin-top:15px;">
+  {maccms:type ids="parent" flag="vod" by="sort" order="asc" id="type" key="key_type"}
+  {php}
+  $classArray=array();
+  if(!empty($type['type_extend']['class'])) {
+    $classArray=explode(',',$type['type_extend']['class']);
+  }
+  {/php}
+  <div class="layout-box category-box clearfix gap">
+    <div class="vod-list"><h2><a href="{$type|mac_url_type}">{$type.type_name}</a></h2></div>
+    {if !empty($type.childids)}
+    <dl class="clearfix">
+      <dt><span>分类</span></dt>
+      <dd class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper">
+          <a class="swiper-slide active" href="{:mac_url_type($type,[],show)}">{$type.type_name}</a>
+          {maccms:type ids="child" parent="'.$type['type_id'].'" flag="vod" by="sort" order="asc"}
+          <a class="swiper-slide" href="{:mac_url_type($vo,[],show)}">{$vo.type_name}</a>
+          {/maccms:type}
+        </div>
+      </dd>
+    </dl>
+    {/if}
+    {if !empty($classArray)}
+    <dl class="clearfix">
+      <dt><span>类型</span></dt>
+      <dd class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper">
+          <a class="swiper-slide active" href="{:mac_url_type($type,[],show)}">Tất cả</a>
+          {maccms:foreach name="$classArray"}
+          <a class="swiper-slide" href="{:mac_url_type($type,['class'=>$vo],show)}">{$vo}</a>
+          {/maccms:foreach}
+        </div>
+      </dd>
+    </dl>
+    {/if}
+  </div>
+  {/maccms:type}
+  <div class="layout-box category-box clearfix gap">
+    <div class="vod-list"><h2>影视资讯</h2></div>
+    <dl class="clearfix">
+      <dt><span>分类</span></dt>
+      <dd class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper">
+          {maccms:type flag="art" by="sort" order="asc"}
+          <a class="swiper-slide" href="{:mac_url_type($vo)}">{$vo.type_name}</a>
+          {/maccms:type}
+        </div>
+      </dd>
+    </dl>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

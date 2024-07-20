@@ -1,0 +1,58 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  {include file="block/vod_detail_info"}
+  <div class="vod-bottom pt-10 row">
+    <div class="vod-left col-xs-12 col-xl-9">
+      {include file="block/vod_playlist"}
+      {if !empty($obj.vod_content)}
+      <div class="vod-list layout-box gap">
+        <h2>Nội dung phim</h2>
+        <div class="more-box">
+          <p class="pt-10 pb-10" style="line-height: 2;">{$obj.vod_content|mac_filter_html}</p>
+        </div>
+      </div>
+      {/if}
+      {include file="block/vod_downlist"}
+      {include file="block/vod_related"}
+      {if !empty($obj.vod_rel_art)}
+      <div class="layout-box clearfix gap">
+        <div class="art-box">
+          <h2>Thông tin thêm</h2>
+          <ul class="art-list clearfix">
+            {maccms:art ids="'.$obj['vod_rel_art'].'" by="time" order="desc"}
+            {include file="block/art_item"}
+            {/maccms:art}
+          </ul>
+        </div>
+      </div>
+      {/if}
+      {include file="block/comment"}
+    </div>
+    <div class="vod-right col-xs-12 col-xl-3 ewave-sticky hidden-xs hidden-sm hidden-md hidden-lg">
+      <div class="layout-box clearfix gap">
+        <div class="hot">
+          <h2>{$obj.type.type_name} chất lượng</h2>
+          <ul class="ranking-list">
+            {maccms:vod type="current" num="10" by="hits_week" order="desc"}
+            <li class="ranking-item">{include file="block/vod_item_ranking"}</li>
+            {/maccms:vod}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+<span class="mac_hits hide" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="insert"></span>
+<span class="mac_ulog_set hide" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="" data-nid=""></span>
+</body>
+</html>

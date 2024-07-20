@@ -1,0 +1,44 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<div class="container mini-container" style="min-width:300px;">
+  <form class="form-horizontal center-block">
+    <div class="form-group">
+      <label class="col-xs-4 control-label">用户名</label>
+      <div class="col-xs-8">
+        <p class="form-control-static">{$user.user_name}</p>
+      </div>
+    </div><div class="form-group">
+      <label class="col-xs-4 control-label">会员组</label>
+      <div class="col-xs-8">
+        <p class="form-control-static">{$user.group.group_name}</p>
+      </div>
+    </div>
+    {if $user.group_id egt 3}
+    <div class="form-group">
+      <label class="col-xs-4 control-label">到期时间</label>
+      <div class="col-xs-8">
+        <p class="form-control-static">{$user.user_end_time|mac_day}</p>
+      </div>
+    </div>
+    {/if}
+    <div class="form-group">
+      <label class="col-xs-4 control-label">剩余积分</label>
+      <div class="col-xs-8">
+        <p class="form-control-static">{$user.user_points}</p>
+      </div>
+    </div><div class="form-group">
+      <label class="col-xs-4 control-label">上次登录</label>
+      <div class="col-xs-8">
+        <p class="form-control-static text-nowrap">{$obj.user_last_login_time|mac_day=color}</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12">
+        <p class="form-control-static text-center">
+          <a href="{:mac_url('user/index')}" target="_top"><i class="fa fa-user"></i>&nbsp;去会员中心</a>&nbsp;&nbsp;
+          <a href="{:mac_url('user/logout')}" target="_top"><i class="fa fa-sign-out fa-rotate-180"></i>&nbsp;退出登录</a>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>

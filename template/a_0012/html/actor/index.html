@@ -1,0 +1,45 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="layout-box gap">
+    <div class="star-box">
+      <h2>热门明星</h2>
+      <div class="star ewave-swiper ewave-swiper-image">
+        <ul class="swiper-wrapper">
+          {maccms:actor num="15" by="hits_week" order="desc"}
+          <li class="swiper-slide"><a href="{$vo|mac_url_actor_detail}">
+            <div class="pic">
+              <div class="img-wrapper circle swiper-lazy" data-background="{$vo.actor_pic|mac_url_img}"></div>
+            </div>
+            <div class="name">{$vo.actor_name}</div>
+            </a></li>
+          {/maccms:actor}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {maccms:type ids="parent" mid="8" by="sort" order="asc" id="type" key="key_type"}
+  <div class="layout-box gap">
+    <div class="vod-list actor-list">
+      <h2> <a class="pull-left" href="{$type|mac_url_type}">{$type.type_name}</a>
+        <div class="type"><a class="hidden-xs hidden-sm hidden-md active" href="{:mac_url_type($type,[],show)}">最新</a>{maccms:type ids="child" num="6" mid="8" parent="'.$type['type_id'].'" by="sort" order="asc"}<a class="hidden-xs hidden-sm hidden-md" href="{$vo|mac_url_type}">{$vo.type_name}</a>{/maccms:type}<a href="{:mac_url_type($type,[],show)}">Xem thêm</a></div>
+      </h2>
+      <ul class="row">
+        {maccms:actor num="12" type="'.$type['type_id'].'" order="desc" by="time"}
+        <li class="col-xs-4 col-md-3 col-lg-2"> {include file="block/actor_item"} </li>
+        {/maccms:actor}
+      </ul>
+    </div>
+  </div>
+  {/maccms:type} </div>
+{include file="block/foot"}
+</body>
+</html>

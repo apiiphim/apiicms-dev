@@ -1,0 +1,48 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<div class="member-left ewave-sticky">
+  <div class="member-avatar-box clearfix">
+    <img class="member-face" src="{$obj.user_portrait|mac_default='static/images/touxiang.png'|mac_url_img}" alt="会员头像">
+    <a class="member-avatar-name" href="{:mac_url('user/info')}"><span>{$user.user_name}</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a>
+  </div>
+  <div class="member-avatar-group row clearfix">
+      <dl class="col-xs-6 member-avatar-point">
+        <dt>{$user.user_points}</dt>
+        <dd>Điểm của tôi</dd>
+      </dl>
+      <dl class="col-xs-6 member-avatar-group-info">
+        <dt><a href="{:mac_url('user/upgrade')}">{$user.group.group_name}</a></dt>
+        <dd>{if condition="$user.group.group_id lt 3"}Vĩnh viễn{else/}{$user.user_end_time|date='Y-m-d',###}{/if}</dd>
+      </dl>
+    </div>
+  <script>
+      $(function(){
+        $(".member-face").imageUpload({
+          formAction: "{:mac_url('user/portrait')}",
+          inputFileName:'file',
+          browseButtonValue: '<i class="fa fa-pencil"></i>',
+          browseButtonClass:'member-upload-btn text-theme',
+          automaticUpload: true,
+          hideDeleteButton: true,
+          hover:false
+        });
+        $(".member-face").on("imageUpload.uploadFailed", function (ev, err) {
+          console.log(err);
+          location.reload();
+        });
+      });
+    </script>
+  <ul>
+    <li {if $member_page=='index'} class="active"{/if}><a href="{:mac_url('user/index')}"><i class="fa fa-id-card-o fa-fw"></i><span>Thông tin của tôi</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li {if $member_page=='favs'} class="active"{/if}><a href="{:mac_url('user/favs')}"><i class="fa fa-star-o fa-fw"></i><span>Danh sách yêu thích</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li {if $member_page=='plays'} class="active"{/if}><a href="{:mac_url('user/plays')}"><i class="fa fa-history fa-fw"></i><span>Lịch sử xem phim</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li {if $member_page=='downs'} class="active"{/if}><a href="{:mac_url('user/downs')}"><i class="fa fa-cloud-download fa-fw"></i><span>Lịch sử tải xuống</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li {if $member_page=='buy'} class="active"{/if}><a href="{:mac_url('user/buy')}"><i class="fa fa-diamond fa-fw"></i><span>Nạp điểm</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li {if $member_page=='upgrade'} class="active"{/if}><a href="{:mac_url('user/upgrade')}"><i class="fa fa-vimeo fa-fw"></i><span>{if condition="$user.group.group_id lt 3"}Nâng cấp {else/}VIP{/if}thành viên</span><span class="member-angle"><i class="fa fa-angle-right"></i></span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li {if $member_page=='orders'} class="active"{/if}><a href="{:mac_url('user/orders')}"><i class="fa fa-database fa-fw"></i><span>Thống kê nạp tiền</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li {if $member_page=='plog'} class="active"{/if}><a href="{:mac_url('user/plog')}"><i class="fa fa-bar-chart fa-fw"></i><span>Thống kê điểm</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li {if $member_page=='cash'} class="active"{/if}><a href="{:mac_url('user/cash')}"><i class="fa fa-cny fa-fw"></i><span>Rút điểm về tài khoản</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li {if $member_page=='reward'} class="active"{/if}><a href="{:mac_url('user/reward')}"><i class="fa fa-gift fa-fw"></i><span>Quản lý giới thiệu</span><span class="member-angle"><i class="fa fa-angle-right"></i></span></a></li>
+    <li><a class="ewave-logout" href="javascript:;" data-jump="{$maccms.path}"><i class="fa fa-sign-out fa-fw fa-rotate-180"></i><span>Đăng xuất</span></a></li>
+  </ul>
+</div>

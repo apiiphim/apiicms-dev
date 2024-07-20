@@ -1,0 +1,80 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<title>{$param['ac_text']}找回密码 - {$maccms.site_name} </title>
+<meta name="keywords" content="{$maccms.site_keywords}"/>
+<meta name="description" content="{$maccms.site_description}"/>
+{include file="user/include"/}
+</head>
+<body>
+{include file="user/head"/}
+<div class="member-body">
+  <div class="member-bg">
+    <div class="container member-container mini-container" style="padding-top:40px;">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <h2 class="col-sm-9" style="margin-bottom:30px;font-size:24px;"><strong>{$param['ac_text']}找回密码</strong></h2>
+      </div>
+    </div>
+    <div class="container member-container mini-container">
+      <form class="form-horizontal center-block ewave-form" method="post" action="{:mac_url('user/findpass_reset')}" data-jump="{:mac_url('user/login')}" autocomplete="off">
+        <div class="form-group">
+          <input type="hidden" name="ac" value="{$param['ac']}">
+          <label class="col-sm-3 control-label hidden-xs layer-hidden">{$param['ac_text']}</label>
+          <div class="col-sm-9 layer-col-12">
+            <div class="input-group">
+              <input type="text" class="form-control ewave-to" name="to" placeholder="请输入您绑定的{$param['ac_text']}" autocomplete="off">
+              <span class="input-group-btn">
+              <input type="button" class="btn member-btn btn-theme ewave-send-code" value="获取{$param['ac_text']}验证码" data-action="{:mac_url('user/findpass_msg')}"/>
+              </span> </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label hidden-xs layer-hidden">{$param['ac_text']}验证码</label>
+          <div class="col-sm-9 layer-col-12">
+            <input type="text" class="form-control" name="code" placeholder="请输入接收到的验证码">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label hidden-xs layer-hidden">新密码</label>
+          <div class="col-sm-9 layer-col-12">
+            <input type="password" class="form-control" name="user_pwd" placeholder="请输入新密码">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label hidden-xs layer-hidden">确认新密码</label>
+          <div class="col-sm-9 layer-col-12">
+            <input type="password" class="form-control" name="user_pwd2" placeholder="请确认您的新密码">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12 layer-col-12">
+            <button type="submit" class="btn member-btn btn-block btn-theme bg-theme ewave-submit text-white">重置密码</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12 layer-col-12">
+            <p class="form-control-static text-center"> <a href="{:mac_url('user/login')}" target="_top"><i class="fa fa-user"></i>&nbsp;去登录</a> {if $param.ac=='phone' && $GLOBALS.config.user.reg_email_sms != 0}
+              &nbsp;<a href="{:mac_url('user/findpass_msg',['ac'=>'email'])}" target="_top"><i class="fa fa-envelope-open"></i>&nbsp;邮箱找回密码</a> {/if}
+              {if $param.ac=='email' && $GLOBALS.config.user.reg_phone_sms != 0}
+              &nbsp;<a href="{:mac_url('user/findpass_msg',['ac'=>'phone'])}" target="_top"><i class="fa fa-mobile-phone"></i>&nbsp;手机找回密码</a> {/if}
+              &nbsp;<a href="{:mac_url('user/findpass')}" target="_top"><i class="fa fa-lock"></i>&nbsp;密保问题找回密码</a> </p>
+          </div>
+        </div>
+        {if $GLOBALS['config']['connect']['qq']['status'] eq 1 || $GLOBALS['config']['connect']['weixin']['status'] eq 1}
+        <div class="row">
+          <div class="col-xs-12 layer-col-12 other-login-box">
+            <h5 class="mt-0">您也可以使用以下第三方登录</h5>
+            {if $GLOBALS['config']['connect']['qq']['status'] eq 1 && !empty($GLOBALS['config']['connect']['qq']['key']) && !empty($GLOBALS['config']['connect']['qq']['secret'])} <a class="user-login-icon qq" href="{:mac_url('user/oauth',['type'=>'qq'])}"><i class="fa fa-qq"></i></a> {/if}
+            {if $GLOBALS['config']['connect']['weixin']['status'] eq 1 && !empty($GLOBALS['config']['connect']['weixin']['key']) && !empty($GLOBALS['config']['connect']['weixin']['secret'])} <a class="user-login-icon wechat" href="{:mac_url('user/oauth',['type'=>'weixin'])}"><i class="fa fa-wechat"></i></a> {/if} </div>
+        </div>
+        {/if}
+      </form>
+    </div>
+  </div>
+</div>
+{include file="user/foot" /}
+</body>
+</html>

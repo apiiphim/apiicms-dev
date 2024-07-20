@@ -1,0 +1,19 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{if !empty($user.user_id)}
+<div class="hidden-xs hidden-sm hidden-md">{include file="block/foot"}</div>
+<div class="hidden-lg hidden-xl hidden-xxl">
+  <div class="member-foot">
+      <ul class="clearfix">
+        <li><a href="{$maccms.path}"><i class="fa fa-home"></i><span>首页</span></a></li>
+        <li {if $member_page=='index'} class="active"{/if}><a href="{:mac_url('user/index')}"><i class="fa fa-id-card-o"></i><span>资料</span></a></li>
+        <li class="member-nav-toggle"><a href="javascript:;"><i class="fa fa-bars"></i><span>导航</span></a></li>
+        <li {if $member_page=='upgrade'} class="active"{/if}><a href="{:mac_url('user/upgrade')}"><i class="fa fa-vimeo"></i><span>{if condition="$user.group.group_id lt 3"}升级{else/}续费{/if}会员</span></a></li>
+        <li><a class="ewave-logout" href="javascript:;" data-jump="{$maccms.path}"><i class="fa fa-sign-out"></i><span>退出</span></a></li>
+      </ul>
+  </div>
+  <div class="member-foot-placeholder"></div>
+</div>
+{else/}
+{include file="block/foot"}
+{/if}

@@ -1,0 +1,145 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<div class="header head-wrapper">
+  <div class="ewave-banner-box float-top clearfix hidden-lg hidden-xl hidden-xxl ewave-remove-box">
+    <div class="ewave-banner-wrapper ewave-remove-list" id="float-top"></div>
+    <a class="ewave-banner-close"><i class="fa fa-close"></i></a>
+    <script src="{$maccms.path_ads}float_top.js"></script>
+  </div>
+  <div class="container">
+    <div class="a1 clearfix">
+      <a class="logo" href="{$maccms.path}"{if !empty($maccms.site_logo)} style="background-image:url({$maccms.site_logo|mac_url_img});"{/if}></a>
+      <div class="nav">
+        <div class="ewave-swiper ewave-swiper-nav">
+        <div class="swiper-wrapper">
+        <a class="swiper-slide{if $maccms.aid==1} active{/if}" href="{$maccms.path}">Trang chủ</a>
+        {maccms:type ids="parent" num="10" flag="vod" by="sort" order="asc"}
+        <a class="swiper-slide{if $GLOBALS.type_id==$vo.type_id||$GLOBALS.type_pid==$vo.type_id} active{/if}" href="{$vo|mac_url_type}">{$vo.type_name}</a>
+        {/maccms:type}
+        {maccms:type ids="parent" num="10" flag="art" by="sort" order="asc"}
+        <a class="swiper-slide{if $GLOBALS.type_id==$vo.type_id||$GLOBALS.type_pid==$vo.type_id} active{/if}" href="{$vo|mac_url_type}">{$vo.type_name}</a>
+        {/maccms:type}
+        {maccms:type ids="parent" num="10" mid="8" by="sort" order="asc"}
+        <a class="swiper-slide{if $GLOBALS.type_id==$vo.type_id||$GLOBALS.type_pid==$vo.type_id} active{/if}" href="{$vo|mac_url_type}">{$vo.type_name}</a>
+        {/maccms:type}
+
+ 
+
+        {if mac_data_count(0,'all','topic') gt 0}
+        <a class="swiper-slide{if $maccms.mid==3} active{/if}" href="{:mac_url_topic_index()}">Chủ đề</a>
+        {/if}
+        <a class="swiper-slide{if $label_name=='new'} active{/if}" href="{:mac_url('label/new')}" title="Phim mới">Phim mới</a>
+        <!-- <a class="swiper-slide{if $label_name=='ranking'} active{/if}" href="{:mac_url('label/ranking')}" title="Danh sách xếp hạng phim">Xếp hạng</a> -->
+        {if $GLOBALS.config.gbook.status==1}
+        <a class="swiper-slide{if $maccms.mid==5} active{/if}" href="{:mac_url('gbook/index')}">Yêu cầu phim</a>
+        {/if}
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="a3">
+      <div class="item nav-m">
+        <a class="ewave-offcanvas" href="javascript:;" data-target="#nav-m-box"><i class="fa fa-sliders"></i><span>Menu</span></a>
+        <div class="nav-m-box ewave-offcanvas-content" id="nav-m-box">
+          <ul class="nav-m-wrapper">
+            <li><a {if $maccms.aid==1} class="active"{/if} href="{$maccms.path}">Trang chủ</a></li>
+            {maccms:type ids="parent" flag="vod" by="sort" order="asc" id="type" key="key_type"}
+            {if !empty($type.childids)}
+            <li class="ewave-collapse{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+              <a class="ewave-collapse-toggle{if $GLOBALS.type_id==$type.type_id} active{/if}" href="javascript:;">{$type.type_name}</a>
+              <div class="ewave-collapse-content{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+                {maccms:type ids="child" flag="vod" parent="'.$type['type_id'].'" by="sort" order="asc"}
+                <a {if $GLOBALS.type_id==$vo.type_id} class="active"{/if} href="{$vo|mac_url_type}">{$vo.type_name}</a>
+                {/maccms:type}
+              </div>
+            </li>
+            {else/}
+            <li><a {if $GLOBALS.type_id==$type.type_id} class="active"{/if} href="{$type|mac_url_type}">{$type.type_name}</a></li>
+            {/if}
+            {/maccms:type}
+            {maccms:type ids="parent" flag="art" by="sort" order="asc" id="type" key="key_type"}
+            {if !empty($type.childids)}
+            <li class="ewave-collapse{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+              <a class="ewave-collapse-toggle{if $GLOBALS.type_id==$type.type_id} active{/if}" href="javascript:;">{$type.type_name}</a>
+              <div class="ewave-collapse-content{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+                {maccms:type ids="child" flag="art" parent="'.$type['type_id'].'" by="sort" order="asc"}
+                <a {if $GLOBALS.type_id==$vo.type_id} class="active"{/if} href="{$vo|mac_url_type}">{$vo.type_name}</a>
+                {/maccms:type}
+              </div>
+            </li>
+            {else/}
+            <li><a {if $GLOBALS.type_id==$type.type_id} class="active"{/if} href="{$type|mac_url_type}">{$type.type_name}</a></li>
+            {/if}
+            {/maccms:type}
+            {maccms:type ids="parent" mid="8" by="sort" order="asc" id="type" key="key_type"}
+            {if !empty($type.childids)}
+            <li class="ewave-collapse{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+              <a class="ewave-collapse-toggle{if $GLOBALS.type_id==$type.type_id} active{/if}" href="javascript:;">{$type.type_name}</a>
+              <div class="ewave-collapse-content{if $GLOBALS.type_id==$type.type_id||$GLOBALS.type_pid==$type.type_id} active{/if}">
+                {maccms:type ids="child" mid="8" parent="'.$type['type_id'].'" by="sort" order="asc"}
+                <a {if $GLOBALS.type_id==$vo.type_id} class="active"{/if} href="{$vo|mac_url_type}">{$vo.type_name}</a>
+                {/maccms:type}
+              </div>
+            </li>
+            {else/}
+            <li><a {if $GLOBALS.type_id==$type.type_id} class="active"{/if} href="{$type|mac_url_type}">{$type.type_name}</a></li>
+            {/if}
+            {/maccms:type}
+            {if mac_data_count(0,'all','topic') gt 0}
+            <li><a {if $maccms.mid==3} class="active"{/if} href="{:mac_url_topic_index()}">Chủ đề</a></li>
+            {/if}
+            <li><a {if $label_name=='new'} class="active"{/if} href="{:mac_url('label/new')}" title="Phim mới">Phim mới</a></li>
+            <!-- <li><a {if $label_name=='ranking'} class="active"{/if} href="{:mac_url('label/ranking')}" title="Danh xách xếp hạng phim">Xếp hạng</a></li> -->
+            {if $GLOBALS.config.gbook.status==1}
+            <li><a {if $maccms.mid==5} class="active"{/if} href="{:mac_url('gbook/index')}">Yêu cầu phim</a></li>
+            {/if}
+          </ul>
+        </div>
+        <div class="ewave-offcanvas-modal"></div>
+      </div>
+      <div class="item js-search">
+        <a href="javascript:;"><i class="fa fa-search"></i><span>Tìm</span></a>
+      </div>
+      <div class="item js-history ewave-history"></div>
+      {if $GLOBALS.config.user.status==1}
+      <div class="item js-user ewave-user"></div>
+      {/if}
+      <div class="item skin-switch">
+        <a class="light" href="javascript:;" title="Chuyển sang chế độ sáng"><i class="fa fa-sun-o"></i><span>Sáng</span></a>
+        <a class="dark" href="javascript:;" title="Chuyển sang chế độ tối"><i class="fa fa-moon-o"></i><span>Tối</span></a>
+      </div>
+    </div>
+    <form class="a2 search" action="{if $maccms.mid==2}{:mac_url('art/search')}{elseif $maccms.mid==8/}{:mac_url('actor/search')}{else/}{:mac_url('vod/search')}{/if}">
+      <div class="input clearfix">
+        <div class="ewave-dropdown ewave-click-dropdown ewave-search-dropdown"> <span class="ewave-search-dropdown-text">{if $maccms.mid==2}Tin tức{elseif $maccms.mid==8/}Diễn viên{else/}Phim{/if}</span>&nbsp;<i class="fa fa-caret-down"></i>
+          <div class="ewave-dropdown-box">
+            <ul>
+              <li data-action="{:mac_url('vod/search')}"><a href="javascript:;">Phim</a></li>
+              <li data-action="{:mac_url('art/search')}"><a href="javascript:;">Tin tức</a></li>
+              <li data-action="{:mac_url('actor/search')}"><a href="javascript:;">Diễn viên</a></li>
+            </ul>
+          </div>
+        </div>
+        <input type="text" class="jheader-search-input search-key" placeholder="Vui lòng nhập thông tin cần tìm" name="wd" autocomplete="off" required{if $maccms.aid==13||$maccms.aid==23||$maccms.aid==83} value="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}"{/if}>
+        <a href="{:mac_url('label/ranking')}" class="hot"><i class="fa fa-fire"></i>Xếp hạng</a> <button type="submit" class="btn search-btn"><i class="fa fa-search"></i></button>
+        {if $maccms.mid!=2 && $maccms.mid!=8}
+        <div class="hot-list">
+          <div class="hot-search-list">
+            <h5 class="title">Tìm kiếm phổ biến</h5>
+            {maccms:vod num="10" by="hits_week" order="desc"} <a href="{$vo|mac_url_vod_detail}" class="hot-item"><span class="order n{$key-1}">{$key}</span><span class="hot-word">{$vo.vod_name}</span></a> {/maccms:vod} </div>
+        </div>
+        {/if}
+      </div>
+    </form>
+  </div>
+  <div class="search-placeholder"></div>
+</div>
+<div class="head-placeholder gap"></div>
+{if $maccms.aid!=1 && !($maccms.aid==11 && !empty($obj.childids))}
+<div class="container gap">
+  <div class="banner-layout-box ewave-banner-box ewave-remove-box">
+    <div class="ewave-banner-wrapper ewave-remove-list" id="banner-top"></div>
+    <script src="{$maccms.path_ads}banner_top.js"></script>
+  </div>
+</div>
+{/if}

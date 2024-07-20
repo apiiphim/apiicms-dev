@@ -1,0 +1,35 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{if $__PAGING__.record_total gt 0}
+      <ul class="ewave-page text-center clearfix">
+        {if $__PAGING__.page_current gt 1}
+        <li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}"><span><i class="fa fa-angle-left"></i></span><span>Trang trước</span></a></li>
+        {else/}
+        <li class="disabled ewave-msg" data-tip="Không có trang trước"><a href="javascript:;"><span><i class="fa fa-angle-left"></i></span><span>Trang trước</span></a></li>
+        {/if}
+        {if ($__PAGING__.page_total egt 5 && $__PAGING__.page_current egt 3)||($__PAGING__.page_total egt 4 && $__PAGING__.page_current egt 5)}
+        <li class="hidden-xs hidden-sm"><a href="{$__PAGING__.page_url|mac_url_page=1}">1</a></li>
+        <li class="hidden-xs hidden-sm"><a href="javascript:;">…</a></li>
+        {/if}
+        {maccms:foreach name="$__PAGING__.page_num" id="num"}
+        {if condition="$__PAGING__.page_current == $num"}
+        <li class="hidden-xs hidden-sm active"><a href="javascript:;">{$num}</a></li>
+        {else/}
+        <li class="hidden-xs hidden-sm"><a href="{$__PAGING__.page_url|mac_url_page=$num}">{$num}</a></li>
+        {/if}
+        {/maccms:foreach}
+        <li class="hidden-md hidden-lg hidden-xl hidden-xxl active"><span class="num">{$__PAGING__.page_current}/{$__PAGING__.page_total}</span></li>
+        {if $__PAGING__.page_current elt ($__PAGING__.page_total-3)}
+        <li class="hidden-xs hidden-sm"><a href="javascript:;">…</a></li>
+        <li class="hidden-xs hidden-sm"><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">{$__PAGING__.page_total}</a></li>
+        {/if}
+        {if $__PAGING__.page_current lt $__PAGING__.page_total}
+        <li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}"><span>Trang tiếp</span><span><i class="fa fa-angle-right"></i></span></a></li>
+        {else/}
+        <li class="disabled ewave-msg" data-tip="Không có trang tiếp theo"><a href="javascript:;"><span>Trang tiếp</span><span><i class="fa fa-angle-right"></i></span></a></li>
+        {/if}
+      </ul>
+      <script>$(".ewave-total").text({$__PAGING__.record_total});</script>
+      {else/}
+      <div class="ewave-empty"><i class="fa fa-minus-circle"></i>&nbsp;Xin lỗi, không tìm thấy dữ liệu liên quan</div>
+      {/if}

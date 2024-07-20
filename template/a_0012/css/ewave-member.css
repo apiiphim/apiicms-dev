@@ -1,0 +1,516 @@
+/*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */
+/* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */
+@charset "utf-8";
+.member-body {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--theme-gap, 15px);
+  padding-right: var(--theme-gap, 15px);
+}
+.member-bg {
+  background: var(--bg-color-2, #f7f7f7);
+  box-shadow: 0px 0px 20px -5px rgb(158 158 158 / 22%);
+  border-radius: 8px;
+  padding-top: 20px;
+  padding-left: var(--theme-gap, 15px);
+  padding-right: var(--theme-gap, 15px);
+  padding-bottom: 20px;
+}
+.member-container {
+  margin-top:30px;
+}
+.member-container .member-left, .member-container .member-right {
+  background-color: var(--bg-color-2, #f7f7f7);
+  box-shadow: var(--theme-shadow);
+  padding-left: var(--theme-gap, 15px);
+  padding-right: var(--theme-gap, 15px);
+  border-radius: 4px;
+}
+.member-container .member-left {
+  width: 300px;
+  float: left;
+  position: sticky;
+  top: 0;
+}
+.member-container .member-left .member-avatar-box {
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+}
+.member-container .member-left .member-avatar-box img, .member-container .member-left .member-avatar-box .controls, .member-upload-btn {
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  border-radius: 50%;
+  float: left;
+  text-align: center;
+  border: none;
+}
+.member-upload-btn {
+  background-color: rgba(0, 0, 0, .2);
+  color: #fff;
+  padding: 0;
+}
+.member-container .member-left .member-avatar-box .controls {
+  position: absolute;
+  left: 0;
+  top: 15px;
+  z-index: 0;
+  display: none;
+}
+.member-container .member-left .member-avatar-box:hover .controls {
+  display: block;
+}
+.member-container .member-left .member-avatar-box p {
+  padding-top: 5px;
+}
+.member-container .member-left .member-avatar-box .member-avatar-name {
+  display: block;
+  height: 64px;
+  line-height: 64px;
+  float: right;
+  padding-left: 30px;
+  width: calc(100% - 64px);
+  text-align: center;
+  position: relative;
+  text-align: left;
+  font-size: 18px;
+}
+.member-container .member-angle {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.member-container .member-left .member-avatar-group {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.member-container .member-left .member-avatar-group dt {
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+.member-container .member-left .member-avatar-point dt {
+  color: var(--theme-color, #f60);
+}
+.member-container .member-left ul {}
+.member-container .member-left ul li {}
+.member-container .member-left ul li a {
+  line-height: 45px;
+  height: 45px;
+  display: block;
+  position: relative;
+}
+.member-container .member-left ul li a .fa {
+  margin-right: 10px;
+}
+.member-container .member-left ul li a:hover {
+  color: var(--theme-color, #f60);
+}
+.member-container .member-left ul li.active {
+  border-left-color: var(--theme-color, #f60);
+}
+.member-container .member-left ul li.active a {
+  color: var(--theme-color, #f60);
+}
+/* 右侧内容 */
+.member-container .member-right {
+  width: calc(100% - 330px);
+  float: right;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: sticky;
+  top: 0;
+}
+.member-container .member-right .member-title {
+  font-size: 30px;
+  margin-bottom:15px;
+}
+.member-container .btn.member-btn {
+  height: 34px;
+  line-height: 34px;
+  padding: 0 12px !important;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+/* tab切换 */
+.member-container .member-right .member-tab-list {
+  padding-left: 0;
+}
+.member-container .member-right .member-tab-list + .table{
+  margin-top:15px;
+}
+.member-container .member-right .member-tab-list ul {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: inline-block;
+}
+.member-container .member-right .member-tab-list li {
+  float: left;
+  line-height: 40px;
+  margin-right: 20px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  z-index: 0;
+  font-size: 18px;
+}
+.member-container .member-right .member-tab-list li:hover, .member-container .member-right .member-tab-list li.active, .member-container .member-right .member-tab-list li.active a {
+  color: var(--theme-color, #f60);
+}
+.member-container .member-right .member-tab-list li.active::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--theme-color, #f60);
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.member-container .member-right .member-listcon {
+  padding: 10px;
+}
+.member-container .member-right .member-popedom-item {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+.member-container .member-right .member-popedom-item.popedom-title {
+  background-color: var(--theme-color, #f60);
+  color: #fff;
+  text-align: center;
+}
+.member-container .member-right .member-popedom-item.popedom-yes, .member-container .member-right .member-popedom-item.popedom-no {
+  background-color: #5fb878;
+  background-size: auto 26px;
+  color: #fff;
+  padding-left: 10px;
+}
+.member-container .member-right .member-popedom-item.popedom-no {
+  background-color: #ff0000;
+}
+/*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */
+/* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */
+.member-container .member-right .member-popedom-item .popedom-icon {
+  display: block;
+  float: right;
+  background-color: #fff;
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  line-height: 24px;
+  color: #5fb878;
+  margin-top: 3px;
+  margin-right: 3px;
+}
+.member-container .member-right .member-popedom-item.popedom-no .popedom-icon {
+  color: #ff0000;
+}
+.member-container .member-right .member-data-item {
+  display: table;
+  width: 100%;
+  margin-top: 15px;
+}
+.member-container .member-right .member-data-checkbox, .member-container .member-right .member-data-infobox, .member-container .member-right .member-data-deletebox {
+  display: table-cell;
+}
+.member-container .member-right .member-data-checkbox {
+  width: 30px;
+  text-align: left;
+  vertical-align: middle;
+}
+.member-container .member-right .member-data-infobox {
+  display: table;
+}
+.member-container .member-right .member-data-cover {
+  width: 60px;
+  vertical-align: middle;
+  display: table-cell;
+}
+.member-container .member-right .member-data-cover a {
+  display: block;
+  width: 100%;
+  padding-bottom: 130%;
+}
+.member-container .member-right .member-data-info {
+  width: calc(100% - 60px);
+  padding-left: 20px;
+  vertical-align: middle;
+  display: table-cell;
+}
+.member-container .member-right .member-data-info h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+}
+.member-container .member-right .member-data-info p {
+  color: var(--text-color-2, #666);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.member-container .member-right .member-data-deletebox {
+  width: 70px;
+  text-align: center;
+  vertical-align: middle;
+}
+.member-container .member-right .member-data-delete {
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 5px;
+  border: 1px solid var(--theme-color, #f60);
+  color: var(--theme-color, #f60);
+}
+.member-container .member-right .member-data-delete:hover {
+  background-color: var(--theme-color, #f60);
+  color: #fff;
+}
+.member-container .member-right .member-data-reward .member-data-item .member-data-cover {
+  width: 80px;
+}
+.member-container .member-right .member-data-reward .member-data-item .member-data-cover a {
+  padding-bottom: 100%;
+}
+.member-container .member-right .member-data-reward .member-data-item .member-data-info {
+  width: calc(100% - 80px);
+  padding-left: 30px;
+}
+.member-container .member-right .table {
+  width: 100%;
+  background-color: var(--bg-color-2, #f7f7f7);
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: center;
+}
+.member-container .member-right .table thead tr {
+  background-color: var(--bg-color-3, #f0f0f0);
+}
+.member-container .member-right .table tbody tr {
+  background-color: var(--bg-color-3, #f0f0f0);
+}
+.member-container .member-right .table td {
+  height: 36px;
+  border-color: var(--bg-color-1, #fff);
+}
+.member-container .member-right .table .pad {
+  padding-left: 10px;
+  text-align: left;
+}
+.member-container .member-right .member-function-box {
+  margin: 10px 0;
+  border: 1px var(--bg-color-2, #f7f7f7) solid;
+  border-right: none;
+  display: inline-block;
+  height: 36px;
+  background-color:var(--bg-color-3);
+}
+.member-container .member-right .member-function-box a {
+  border-right: 1px var(--bg-color-2, #f7f7f7) solid;
+  padding: 0 var(--theme-gap, 15px);
+  line-height: 36px;
+  height: 36px;
+  display: inline-block;
+}
+.member-container .member-right .member-page {
+  margin: 20px auto;
+  text-align: center;
+}
+.member-container .member-right .member-page-input {
+  background: #fff;
+  text-align: center;
+  border: 1px #ddd solid;
+  height: 28px;
+  width: 50px;
+  border-radius: 3px;
+}
+.member-container .member-right .member-page-button {
+  border: 1px #ddd solid;
+  background: #fff;
+  width: 50px;
+  line-height: 28px;
+  cursor: pointer;
+  text-align: center;
+  color: #333;
+  padding: 0;
+  border-radius: 3px;
+}
+.member-container .member-right .member-page a {
+  background-color: var(--bg-color-3, #f0f0f0);
+  color: var(--text-color-1, #333);
+  text-align: center;
+  padding: 5px var(--theme-gap, 15px);
+  border-radius: 3px;
+}
+.member-container .member-right .member-page .member-page-current, .member-container .member-right .member-page a:hover {
+  background-color: var(--theme-color, #f60);
+  color: #fff;
+}
+.member-empty {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-size: 24px;
+  color: #999;
+}
+.member-container .member-right .member-upgrade-item {
+  margin-bottom: 10px;
+}
+.member-foot {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+}
+.member-foot li {
+  width: 20%;
+  float: left;
+  text-align: center;
+  min-height: 1px;
+}
+.member-foot li a {
+  display: block;
+  background-color: var(--bg-color-3, #f0f0f0);
+}
+.member-foot li i, .member-foot li span {
+  display: block;
+  line-height: 1;
+  padding-top: 10px;
+}
+.member-foot li span {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.member-foot li.active a {
+  color: var(--theme-color, #f60);
+}
+.member-foot-placeholder {
+  height: 70px;
+  margin-top: var(--theme-gap, 15px);
+}
+.member-foot .member-nav-toggle {
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+}
+.member-foot .member-nav-toggle a {
+  position: relative;
+  z-index: 2;
+}
+.member-foot .member-nav-toggle::after {
+  content: '';
+  display: block;
+  background: var(--bg-color-3, #f0f0f0);
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.member-foot, .member-foot .member-nav-toggle::after {
+  border-top: 2px solid rgb(17 58 93 / 10%);
+  box-shadow: 0px 4px 10px 0px rgb(17 58 93 / 20%) !important;
+}
+.member-foot .member-nav-toggle::after {
+  box-shadow: 0px -1px 3px 0px rgb(17 58 93 / 20%) !important;
+}
+@media(max-width:991px) {
+  .member-top-nav, .member-top-nav-item, .header {
+    height: auto;
+  }
+  .member-nav-toggle {
+    display: block;
+  }
+  .member-top-nav {
+    padding: 10px;
+  }
+  .member-top-nav-item {
+    float: none;
+    display: inline-block;
+  }
+  .member-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  .member-container .member-left, .member-container .member-right {
+    box-shadow: none;
+  }
+  .member-container .member-left {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    z-index: 999999999999999;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: .3s;
+    border-radius: 0;
+    box-shadow:3px 0 5px 0 rgba(0, 0, 0, .4);
+  }
+  .member-nav-open .member-container .member-left {
+    transform: translateX(0);
+  }
+  .member-nav-open .member-nav-open-bg {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, .6);
+  }
+  .member-container .member-right {
+    float: none;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+  }
+  .member-container .member-right .member-input, .member-container .member-right .search-button {
+    width: calc(100% - 115px);
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .member-container .member-right .member-popedom-box {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+  .member-container .member-right .member-popedom-box + .member-popedom-box {
+    border-top: 1px solid #ccc;
+  }
+}
+@media(max-width:767px){
+    .member-container .member-right .member-data-checkbox {
+    width: 20px;
+  }
+  .member-container .member-right .member-data-deletebox {
+    width: 30px;
+  }
+  .member-container .member-right .member-data-delete {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    padding: 0;
+  }
+}
+[data-theme="1"] .member-container .member-right {
+  box-shadow: none;
+}
+/*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */
+/* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */

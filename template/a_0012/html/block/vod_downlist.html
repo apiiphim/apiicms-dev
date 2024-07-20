@@ -1,0 +1,58 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{if !empty($obj.vod_down_list) && empty($obj.vod_copyright)}
+      <div class="playlist-box layout-box gap">
+        <div class="playlist-tab-box">
+          <h2 class="hidden-xs">下载列表</h2>
+          <div class="playlist-tab ewave-swiper ewave-swiper-nav">
+            <ul class="swiper-wrapper">
+              {php}$downlist_index=1;{/php}
+              {maccms:foreach name="obj.vod_down_list" id="vo"}
+              <li class="swiper-slide ewave-tab{if ($maccms.aid==14 && $downlist_index==1) || ($maccms.aid==15 && $vo.sid==$param.sid)} active{/if}" data-target="#ewave-downlist-{$vo.sid}">{$vo.player_info.show}<em></em></li>
+              {php}$downlist_index++;{/php}
+              {/maccms:foreach}
+            </ul>
+          </div>
+          <div class="right ewave-sort" data-target=".ewave-downlist-sort-content:visible"><span><i class="fa fa-sort-amount-asc"></i></span>Lọc</div>
+        </div>
+        <div class="scrollbar">
+          {php}$downlist_index=1;{/php}
+          {php}
+          if (!function_exists('thunderEncode')){
+            function thunderEncode($str){
+              $thunderUrl=$str;
+                if(substr($str,0,10)!='thunder://'){
+                  $thunderUrl='thunder://'.base64_encode('AA'.$str.'ZZ');
+                }
+              return $thunderUrl;
+            }
+          }
+          {/php}
+          {maccms:foreach name="obj.vod_down_list" id="vo"}
+          <ul class="ewave-tab-content ewave-playlist-content ewave-downlist-content downlist" id="ewave-downlist-{$vo.sid}"{if ($maccms.aid==14 && $downlist_index==1) || ($maccms.aid==16 && $vo.sid==$param.sid)}{else/} style="display:none;"{/if}>
+          <div class="ewave-downlist-sort-content"> {maccms:foreach name="vo.urls" id="vo2"}
+            <li class="row ewave-downlist-item-full ewave-xunlei-item">
+              <div class="col-xs-1 text-center">
+                <input class="ewave-downlist-checkbox" type="checkbox" name="downlist-checkbox-{$vo.sid}" value="{$vo2.url}">
+              </div>
+              <div class="col-xs-6 col-md-7 ewave-downlist-name">
+                <div class="ewave-downlist-ep text-overflow"><a href="{$vo2.url}" target="_blank">{$vo2.name}</a></div>
+                <div class="ewave-downlist-url hidden-xs hidden-sm">
+                  <input class="form-control" type="text" value="{$vo2.url}">
+                </div>
+              </div>
+              <div class="col-xs-5 col-md-4">
+                <div class="ewave-downlist-btns clearfix"><a class="btn ewave-downlist-btn btn-theme" rel="nofollow" href="{$vo2.url|thunderEncode}" data-name="{$vo2.name}" data-url="{$vo2.url}" target="_blank"><span class="hidden-xs">迅雷</span>下载</a><a class="btn ewave-downlist-btn ewave-copy" rel="nofollow" href="javascript:;" data-text="{$vo2.url}">复制<span class="hidden-xs">链接</span></a></div>
+              </div>
+            </li>
+            {/maccms:foreach}
+            </div>
+            {if $vo.url_count gt 1}
+            <li class="ewave-downlist-item-full ewave-downlist-tools clearfix"> <a class="btn ewave-downlist-btn ewave-downlist-checkall" data-target="downlist-checkbox-{$vo.sid}">全选</a> <a class="btn ewave-downlist-btn ewave-downlist-download" data-target="downlist-checkbox-{$vo.sid}">下载选中资源</a> <a class="btn ewave-downlist-btn ewave-downlist-copyall" data-target="downlist-checkbox-{$vo.sid}">复制选中资源</a> <a class="ewave-downlist-btn text-theme ewave-downlist-tip" href="https://www.xunlei.com/" target="_blank"><i class="fa fa-warning"></i>&nbsp;下载需要迅雷，点此安装</a> </li>
+            {/if}
+          </ul>
+          {php}$downlist_index++;{/php}
+          {/maccms:foreach}
+        </div>
+      </div>
+      {/if}

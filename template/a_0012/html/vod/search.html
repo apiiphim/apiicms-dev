@@ -1,0 +1,25 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="layout-box clearfix gap">
+    <div class="vod-list">
+      <h2><span class="pull-left">Tìm kiếm: {$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}</span><div class="type"><span class="small">Tổng&nbsp;<span class="ewave-total">0</span> phim&nbsp;·&nbsp;trên {$param.page} trang</span></h2>
+      <ul class="row">
+        {maccms:vod num="36" paging="yes" half="3" by="time" order="desc" pageurl="vod/search"}
+        <li class="col-xs-4 col-md-3 col-lg-2"> {include file="block/vod_item"} </li>
+        {/maccms:vod}
+      </ul>
+      {include file="block/paging"} </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

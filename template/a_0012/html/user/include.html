@@ -1,0 +1,52 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{include file="block/include"}
+<link rel="stylesheet" type="text/css" href="{$maccms.path_tpl}css/ewave-member.css"/>
+<script type="text/javascript" src="{$maccms.path}static/js/jquery.imageupload.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (ewave_config.debug == 1) {
+    let debugdiv = document.createElement("div");
+    let debugtxt = '';
+    try {
+      if (typeof jQuery === "function") {
+        debugtxt += 'jquery已加载<br>';
+      } else {
+        debugtxt += 'jquery未加载<br>';
+      }
+    } catch (e) {
+      debugtxt += e + '<br>';
+    }
+    try {
+      if (typeof Swiper === "function") {
+        debugtxt += 'ewave-plugins.js已加载<br>';
+      } else {
+        debugtxt += 'ewave-plugins.js未加载<br>';
+      }
+    } catch (e) {
+      debugtxt += e + '<br>';
+    }
+    try {
+      if (typeof eWave === "object") {
+        debugtxt += 'ewave-global.js已加载<br>';
+      } else {
+        debugtxt += 'ewave-global.js未加载<br>';
+      }
+    } catch (e) {
+      debugtxt += e + '<br>';
+    }
+    try {
+      if (typeof MAC === "object") {
+        debugtxt += 'home.js已加载<br>';
+      } else {
+        debugtxt += 'home.js未加载<br>';
+      }
+    } catch (e) {
+      debugtxt += e + '<br>';
+    }
+    debugdiv.innerHTML = debugtxt;
+    debugdiv.style.textAlign = 'center';
+    document.getElementsByTagName("body")[0].appendChild(debugdiv);
+  }
+}, false);
+</script>

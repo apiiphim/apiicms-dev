@@ -1,0 +1,95 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="art-box row">
+    <div class="col-xs-12 col-xl-8">
+      <div class="layout-box clearfix gap">
+        <div class="art-detail-box">
+          <h1 class="art-detail-title" {if !empty($obj.art_color)} color:#{$obj.art_color};{/if}>{$obj.art_name}</h1>
+          <p class="art-detail-info">分类：<a href="{$obj.type|mac_url_type}">{$obj.type.type_name}</a><span class="separator">/</span>{if !empty($obj.art_author)}作者：{$obj.art_author}<span class="separator">/</span>{/if}
+            <time>{$obj.art_time|mac_day}</time>
+            <span class="separator">/</span><span class="mac_hits hits" data-id="{$obj.art_id}" data-mid="{$maccms.mid}" data-type="hits">{$obj.art_hits}</span>&nbsp;阅读 </p>
+          <div class="art-detail-content"> {$obj.art_page_list[$param['page']]['content']|mac_url_content_img} </div>
+          {if $__PAGING__.page_total gt 1}
+          {include file="block/paging"}
+          {/if} </div>
+      </div>
+      {if !empty($obj.art_rel_vod)}
+      <div class="layout-box clearfix gap">
+        <div class="vod-list">
+        <h2>相关视频</h2>
+      <ul class="row">
+        {php}
+          $related_num=4;
+          $rel_num=0;
+          $my_key=1;
+          $related_id='';
+          if (!empty($obj['art_rel_vod'])){
+            $rel_num=count(explode(',',trim($obj['art_rel_vod'],',')));
+            if ($rel_num > $related_num) {
+              $rel_num=$related_num;
+            }
+            $related_num-=$rel_num;
+          }
+          {/php}
+          {if !empty($rel_num)}
+          {maccms:vod num="'.$rel_num.'" rel="'.$obj['art_rel_vod'].'"}
+          <li class="col-xs-4 col-md-3{if $my_key gt 3} hidden-xs hidden-sm{/if}"> {include file="block/vod_item"} </li>
+          {php}$related_id.=",".$vo['vod_id'];$my_key++;{/php}
+          {/maccms:vod}
+          {/if}
+          {if !empty($related_num)}
+          {maccms:vod num="'.$related_num.'" not="'.$related_id.'" by="hits_week" order="desc"}
+          <li class="col-xs-4 col-md-3{if $my_key gt 3} hidden-xs hidden-sm{/if}"> {include file="block/vod_item"} </li>
+          {php}$related_id.=",".$vo['vod_id'];$rel_num++;$related_num--;$my_key++;{/php}
+          {/maccms:vod}
+          {/if}
+          {if !empty($related_num)}
+          {maccms:vod num="'.$related_num.'" not="'.$related_id.'" by="hits_week" order="desc"}
+          <li class="col-xs-4 col-md-3{if $my_key gt 3} hidden-xs hidden-sm{/if}"> {include file="block/vod_item"} </li>
+          {php}$related_id.=",".$vo['vod_id'];$rel_num++;$related_num--;$my_key++;{/php}
+          {/maccms:vod}
+          {/if}
+      </ul>
+    </div>
+      </div>
+      {/if}
+      {if !empty($obj.art_rel_art)}
+      <div class="layout-box clearfix gap">
+        <div class="art-box">
+          <h2>相关资讯</h2>
+          <ul class="art-list clearfix">
+            {maccms:art ids="'.$obj['art_rel_art'].'" by="time" order="desc"}
+            {include file="block/art_item"}
+            {/maccms:art}
+          </ul>
+        </div>
+      </div>
+      {/if}
+      {include file="block/comment"}
+    </div>
+    <div class="hidden-xs hidden-sm hidden-md hidden-lg col-xl-4 ewave-sticky">
+      <div class="layout-box clearfix gap">
+        <div class="index-ranking">
+          <h2>热点{$obj.type.type_name}</h2>
+        </div>
+        <ul class="ranking-list">
+          {maccms:art num="10" type="current" by="hits_week" order="desc"}
+          <li class="ranking-item">{include file="block/art_item_ranking"}</li>
+          {/maccms:art}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<div class="detail-star">
+              <h3>Đánh giá của người xem<small class="pull-right"><span class="ewave-star-count">{$obj.vod_score_num}</span>Người đã đánh giá</small></h3>
+              <div class="ewave-star-box center-block">
+                <div class="row clearfix">
+                  <div class="col-xs-6">
+                  <ul class="ewave-star clearfix" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" score="{$obj.vod_score}" data-star="{$obj.vod_score/2|ceil}" data-score-num="{$obj.vod_score_num}">
+                  </ul>
+                  </div>
+                  <h4 class="ewave-star-text col-xs-3"></h4>
+                  <h4 class="ewave-star-num col-xs-3 text-theme">{$obj.vod_score}</h4>
+                </div>
+                <div class="qrcode-box text-center hidden-xs">
+                  <div class="ewave-qrcode" data-width="120" data-height="120"></div>
+                  <div class="text-muted">Xem trên điện thoại</div>
+                </div>
+                <script>
+                {if $GLOBALS.config.view.vod_detail==2}
+                  eWave.Star.Static=1;
+                {else/}
+                  eWave.Star.Static=0;
+                {/if}
+                </script>
+                <div class="text-center ewave-detail-tool">
+                  {if $GLOBALS.config.user.status==1}<a class="ewave-ulog ewave-ulog-get ewave-ulog-get-{$obj.vod_id}" href="javascript:;" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-type="2"><i class="fa fa-heart-o">&nbsp;Yêu thích</i></a>{/if}
+                  <a class="ewave-digg" href="javascript:;" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-type="up"><i class="fa fa-thumbs-o-up">&nbsp;Thích&nbsp;<span class="ewave-digg-num">{$obj.vod_up}</span></i></a>
+                </div>
+              </div>
+            </div>

@@ -1,0 +1,65 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<title>微信充值 - 会员中心 - {$maccms.site_name}</title>
+<meta name="keywords" content="微信充值"/>
+<meta name="description" content="微信充值"/>
+{include file="user/include" /}
+</head>
+<body>
+{include file="user/head" /}
+<div class="container member-container clearfix">
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title">微信在线充值</h2>
+    <form class="form-horizontal center-block" action="{:mac_url('user/gopay')}" method="post">
+      <input type="hidden" name="order_id" value="{$info.order_id}">
+      <input type="hidden" name="order_code" value="{$info.order_code}">
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label">订单编号</label>
+        <div class="col-xs-8 col-sm-6">
+          <p class="form-control-static pt-xs-0 pt-sm-0">{$order.order_code}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label">订单金额</label>
+        <div class="col-xs-8 col-sm-6">
+          <p class="form-control-static pt-xs-0 pt-sm-0"><span class="text-red">{$order.order_price}</span>元</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label"></label>
+        <div class="col-xs-8 col-sm-6">
+          <p class="form-control-static pt-xs-0 pt-sm-0"><img src="{:mac_url('user/qrcode')}?data={$payment.code_url|urlencode}" width="150" height="150"/></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label"></label>
+        <div class="col-xs-8 col-sm-6">
+          <p class="form-control-static pt-xs-0 pt-sm-0">打开微信，扫码支付</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  $(".member-left li.user-left-buy").addClass('active');
+	function check(){
+		$.get("{:mac_url('user/order_info')}" + '?order_id={$order.order_id}', function(data){
+			if(data.info.order_status == 1){
+				layer.msg('支付完成，即将跳转到会员中心');
+        setTimeout(function(){
+          window.location.href = "{:mac_url('user/index')}";
+        },1000);
+			}
+		});
+	}
+	$(function(){
+		setInterval(function(){check()}, 5000);  //5秒查询一次支付是否成功
+	})
+</script> 
+{include file="user/foot" /}
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="banner gap">
+  <div class="banner-box">
+    <div class="banner-pic ewave-swiper ewave-swiper-image" data-effect="fade" data-pagination=".nav-name" data-pagination-class="name" data-pagination-active-class="active" data-loop="false">
+      <div class="swiper-wrapper"> {maccms:vod level="9" num="6" by="time" order="desc"} <a class="swiper-slide swiper-lazy" href="{$vo|mac_url_vod_detail}" data-background="{if !empty($vo.vod_pic_slide)}{$vo.vod_pic_slide|mac_url_img}{else/}{$vo.vod_pic|mac_url_img}{/if}" title="{$vo.vod_name}{$key}">
+        <div class="swiper-lazy-preloader"></div>
+        <div class="common_shade top_shade"></div>
+        <div class="common_shade bottom_shade"></div>
+        <div class="common_shade left_shade"></div>
+        <div class="common_shade right_shade"></div>
+        <div class="swiper-pagination-html hide">
+          <h3>{$vo.vod_name}</h3>
+          <p>{include file="block/status"}</p>
+        </div>
+        </a> {/maccms:vod} </div>
+      <div class="nav-name"></div>
+    </div>
+  </div>
+  <div class="clist-box hidden-xs hidden-sm hidden-md">
+    <div class="container">
+      <div class="row">
+        <div class="clist-left col-lg-9">
+          {maccms:type ids="parent" flag="vod" num="4" by="sort" order="asc" id="type" key="key_type"}
+          <div class="clist-left-tabs col-lg-2"><a class="clist-left-tabs-title" href="{$type|mac_url_type}">{$type.type_name}</a>
+            <!-- <div class="clist-left-tabs-sub"> {if !empty($type.childids)}
+              {maccms:type ids="parent" flag="vod" num="2" parent="'.$type['type_id'].'" by="sort" order="asc"} <a href="{$vo|mac_url_type}">{$vo.type_name}</a> {/maccms:type}
+              {else/}
+              {php}
+              if(!empty($type['type_extend']['area'])) {
+              $areaArray=explode(',',$type['type_extend']['area']);
+              }elseif(!empty($type['parent']['type_extend']['area'])){
+              $areaArray=explode(',',$type['parent']['type_extend']['clareaaareass']);
+              }else{
+              $areaArray=explode(',',$GLOBALS['config']['app']['vod_extend_area']);
+              }
+              {/php}
+              {maccms:foreach name="areaArray" id="area" key="key_area"}
+              {if $key_area lt 2} <a href="{:mac_url_type($type,['area'=>$area],show)}">{$area}</a> {/if}
+              {/maccms:foreach}
+              {/if} </div> -->
+          </div>
+          {/maccms:type}
+          {if mac_data_count(0,'all','actor') gt 0}
+          {maccms:type ids="parent" mid="8" num="1" by="sort" order="asc"}
+          <div class="clist-left-tabs col-lg-3"><a class="clist-left-tabs-title" href="{$vo|mac_url_type}">{$vo.type_name}</a>
+            <div class="clist-left-tabs-sub"> <a href="{:mac_url_type($vo,['sex'=>'Nam'],show)}">Sao nam</a> <a href="{:mac_url_type($vo,['sex'=>'Nữ'],show)}">Sao nữ</a> </div>
+          </div>
+          {/maccms:type}
+          {/if} </div>
+        <div class="clist-right col-lg-3">
+          {maccms:type ids="parent" flag="vod" num="1" by="sort" order="asc"} <a href="{:mac_url_type($vo,[],show)}"> <i class="fa fa-play-circle"></i> <span>Thư viện</span> </a> {/maccms:type}
+          {if $GLOBALS.config.user.status==1} <a href="{:mac_url('user/upgrade')}" class="pay-btn" data-type="vip"> <i class="fa fa-diamond"></i> <span>VIP</span> </a> {/if} </div>
+        <div class="clist-line-box">
+          <div class="clist-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="banner-layout-box gap ewave-banner-box ewave-remove-box">
+    <div class="ewave-banner-wrapper ewave-remove-list" id="index-banner-1"></div>
+    <script src="{$maccms.path_ads}index_banner_1.js"></script>
+  </div>
+  <div class="layout-box clearfix gap" id="index-box">
+    <div class="slide-list vod-list">
+      <h2>Phim phổ biến</h2>
+      <div class="more-box ewave-swiper ewave-swiper-image" data-lazy-class="lazyload">
+        <ul class="swiper-wrapper">
+          {maccms:vod num="14" by="hits_week" order="desc"}
+          <li class="swiper-slide"> {include file="block/vod_item"} </li>
+          {/maccms:vod}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {maccms:type ids="parent" flag="vod" by="sort" order="asc" id="type" key="key_type"}
+  <div class="layout-box clearfix gap" id="index-vod-{$type.type_id}">
+    <div class="vod-list-tv row">
+      <div class="col-xs-12 col-xl-9">
+        <h2><a class="pull-left" href="{$type|mac_url_type}">{$type.type_name}</a>
+          <div class="type"><a class="hidden-xs hidden-sm hidden-md active" href="{:mac_url_type($type,[],show)}">Cập nhật</a>{maccms:type ids="child" num="6" flag="vod" parent="'.$type['type_id'].'" by="sort" order="asc"}<a class="hidden-xs hidden-sm hidden-md" href="{$vo|mac_url_type}">{$vo.type_name}</a>{/maccms:type}<a href="{:mac_url_type($type,[],show)}">Xem thêm</a></div>
+        </h2>
+        <div class="vlist">
+          <ul class="row">
+            {maccms:vod num="10" type="'.$type['type_id'].'" by="time" order="desc"}
+            <li class="col-xs-4 col-md-3{if $key==1||$key==6} col-lg-4 one{else/} col-lg-2{/if}{if $key gt 6} hidden-xs hidden-sm{/if}{if $key gt 8} hidden-md{/if}">
+              {if $key==1||$key==6}
+              {php}$big_item=1;{/php}
+              {/if}
+              {include file="block/vod_item"}
+            </li>
+            {php}$big_item=0;{/php}
+            {/maccms:vod}
+          </ul>
+        </div>
+      </div>
+      <div class="hidden-xs hidden-sm hidden-md hidden-lg col-xl-3">
+        <div class="index-ranking">
+          <h2><a class="pull-left" href="{:mac_url('label/ranking')}">{$type.type_name} Hot</a> </h2>
+        </div>
+        <ul class="ranking-list">
+          {maccms:vod num="7" type="'.$type['type_id'].'" by="hits" order="desc"}
+          <li class="ranking-item{if $key gt 6} hidden-xl{/if}">{include file="block/vod_item_ranking"}</li>
+          {/maccms:vod}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {/maccms:type}
+  {if mac_data_count(0,'all','actor') gt 0}
+  <div class="banner-layout-box gap ewave-banner-box ewave-remove-box">
+    <div class="ewave-banner-wrapper ewave-remove-list" id="index-banner-2"></div>
+    <script src="{$maccms.path_ads}index_banner_2.js"></script>
+  </div>
+  <div class="layout-box clearfix gap" id="index-actor">
+    <div class="star-box gap">
+      <h2><a href="{:mac_url_actor_index()}">Người nổi tiếng</a>
+        <div class="type"><a href="{:mac_url_actor_index()}">Xem thêm</a></div>
+      </h2>
+      <div class="star ewave-swiper ewave-swiper-image">
+        <ul class="swiper-wrapper">
+          {maccms:actor num="15" by="hits_week" order="desc"}
+          <li class="swiper-slide"><a href="{$vo|mac_url_actor_detail}">
+            <div class="pic">
+              <div class="img-wrapper circle swiper-lazy" data-background="{$vo.actor_pic|mac_url_img}"></div>
+            </div>
+            <div class="name">{$vo.actor_name}</div>
+            </a></li>
+          {/maccms:actor}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {/if}
+  {if mac_data_count(0,'all','art') gt 0}
+  <div class="banner-layout-box gap ewave-banner-box ewave-remove-box">
+    <div class="ewave-banner-wrapper ewave-remove-list" id="index-banner-3"></div>
+    <script src="{$maccms.path_ads}index_banner_3.js"></script>
+  </div>
+  {maccms:type ids="parent" flag="art" by="sort" order="asc" id="type" key="key_type"}
+  <div class="layout-box clearfix gap" id="index-art-{$type.type_id}">
+    <div class="art-box row">
+      <div class="col-xs-12 col-xl-8">
+        <h2><a class="pull-left" href="{$type|mac_url_type}">{$type.type_name}</a>
+          <div class="type"><a class="hidden-xs hidden-sm hidden-md active" href="{$type|mac_url_type}">Cập nhật</a>{maccms:type ids="child" num="6" flag="art" parent="'.$type['type_id'].'" by="sort" order="asc"}<a class="hidden-xs hidden-sm hidden-md" href="{$vo|mac_url_type}">{$vo.type_name}</a>{/maccms:type}<a href="{$type|mac_url_type}">Xem thêm</a></div>
+        </h2>
+        <ul class="art-list clearfix">
+          {maccms:art num="5" type="'.$type['type_id'].'" by="time" order="desc"}
+          {include file="block/art_item"}
+          {/maccms:art}
+        </ul>
+      </div>
+      <div class="hidden-xs hidden-sm hidden-md hidden-lg col-xl-4">
+        <div class="index-ranking">
+          <h2>Xếp hang {$type.type_name}</h2>
+        </div>
+        <ul class="ranking-list">
+          {maccms:art num="11" type="'.$type['type_id'].'" by="hits" order="desc"}
+          <li class="ranking-item{if $key gt 10} hidden-xl{/if}">{include file="block/art_item_ranking"}</li>
+          {/maccms:art}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {/maccms:type}
+  {/if}
+  {if mac_data_count(0,'all','topic') gt 0}
+  <div class="banner-layout-box gap ewave-banner-box ewave-remove-box">
+    <div class="ewave-banner-wrapper ewave-remove-list" id="index-banner-4"></div>
+    <script src="{$maccms.path_ads}index_banner_4.js"></script>
+  </div>
+  <div class="layout-box clearfix gap" id="index-topic">
+    <div class="vod-topic">
+      <h2><a href="{:mac_url_topic_index()}"> Tin tức hấp dẫn</a></h2>
+      <ul class="row">
+        {maccms:topic num="6" by="time" order="desc" key="key_topic"}
+        <li class="col-xs-12 col-md-6 col-lg-4{if $key_topic gt 3} hidden-xs hidden-sm{/if}">{include file="block/topic_item"}</li>
+        {/maccms:topic}
+      </ul>
+    </div>
+  </div>
+  {/if}
+  <div class="layout-box clearfix gap">
+    <div class="links-box">
+      <h2>Liên kết</h2>
+      <ul>
+        {maccms:link num="100" by="sort" order="asc"}
+        <li><a href="{$vo.link_url}" target="_blank">{$vo.link_name}</a></li>
+        {/maccms:link}
+      </ul>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>
