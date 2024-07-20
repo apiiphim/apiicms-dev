@@ -1103,7 +1103,7 @@ class Collect extends Base
             return json_encode($result);
         } catch (\Throwable $th) {
             $result = array(
-                'status' => false,
+                'status' => false, // bật debug php
                 'post_id' => $vod_id,
                 'msg' => "Crawl error: " . $th,
             );
