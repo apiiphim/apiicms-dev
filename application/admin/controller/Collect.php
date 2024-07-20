@@ -1156,8 +1156,15 @@ class Collect extends Base
         if($sourcePage["movie"]["name"] != $sourcePage["movie"]["origin_name"]) array_push($arrTags, $sourcePage["movie"]["origin_name"]);
 
         if($flag == 'i') {
-            $vod_pic = $this->syncImagesThumb(1, $sourcePage["movie"]["thumb_url"])['pic'];
-            $vod_pic_slide = $this->syncImagesPoster(1, $sourcePage["movie"]["poster_url"])['pic'];
+            $thumb_url = $sourcePage["movie"]["thumb_url"];
+            $poster_url = $sourcePage["movie"]["poster_url"];
+            if (strpos($poster_url, 'img.phimapi.com') !== false) { // Do thằng KKphim nó sắp xếp ngược với các nguồn khác =))
+                $vod_pic = $this->syncImagesThumb(1, $poster_url)['pic'];
+                $vod_pic_slide = $this->syncImagesPoster(1, $thumb_url)['pic'];
+            } else {
+                $vod_pic = $this->syncImagesThumb(1, $thumb_url)['pic'];
+                $vod_pic_slide = $this->syncImagesPoster(1, $poster_url)['pic'];
+            }
         }
     
         $vod_play_data = $this->play_list($sourcePage["episodes"]);
