@@ -1170,7 +1170,7 @@ class Collect extends Base
         $vod_play_data = $this->play_list($sourcePage["episodes"]);
         $vod_douban_id = $sourcePage["movie"]["tmdb"]["id"] ?? '';
         $vod_douban_score = $sourcePage["movie"]["tmdb"]["vote_average"] ?? '';        
-        $vod_level = ($sourcePage["movie"]["chieurap"] ?? false) === true ? '9' : '0';   
+        $vod_level = ($sourcePage["movie"]["chieurap"] ?? false) === true ? '9' : '0';
     
         $data = array(
             'type_id' => $type_id,

@@ -634,48 +634,49 @@ function mac_curl_get($url,$heads=array(),$cookie='')
 }
 
 
-function mac_substring($str, $lenth, $start=0)
+function mac_substring(string $str, int $length, int $start = 0): string
 {
     $len = strlen($str);
-    $r = array();
+    $result = [];
     $n = 0;
     $m = 0;
 
-    for($i=0;$i<$len;$i++){
+    for ($i = 0; $i < $len; $i++) {
         $x = substr($str, $i, 1);
         $a = base_convert(ord($x), 10, 2);
-        $a = substr( '00000000 '.$a, -8);
+        $a = substr('00000000' . $a, -8);
 
-        if ($n < $start){
-            if (substr($a, 0, 1) == 0) {
-            }
-            else if (substr($a, 0, 3) == 110) {
+        if ($n < $start) {
+            if (substr($a, 0, 1) == '0') {
+                // Single byte character (ASCII)
+            } elseif (substr($a, 0, 3) == '110') {
+                // Two byte character
                 $i += 1;
-            }
-            else if (substr($a, 0, 4) == 1110) {
+            } elseif (substr($a, 0, 4) == '1110') {
+                // Three byte character
                 $i += 2;
             }
             $n++;
-        }
-        else{
-            if (substr($a, 0, 1) == 0) {
-                $r[] = substr($str, $i, 1);
-            }else if (substr($a, 0, 3) == 110) {
-                $r[] = substr($str, $i, 2);
+        } else {
+            if (substr($a, 0, 1) == '0') {
+                $result[] = substr($str, $i, 1);
+            } elseif (substr($a, 0, 3) == '110') {
+                $result[] = substr($str, $i, 2);
                 $i += 1;
-            }else if (substr($a, 0, 4) == 1110) {
-                $r[] = substr($str, $i, 3);
+            } elseif (substr($a, 0, 4) == '1110') {
+                $result[] = substr($str, $i, 3);
                 $i += 2;
-            }else{
-                $r[] = ' ';
+            } else {
+                $result[] = ' ';
             }
-            if (++$m >= $lenth){
+            if (++$m >= $length) {
                 break;
             }
         }
     }
-    return  join('',$r);
+    return implode('', $result);
 }
+
 
 
 function mac_array2xml($arr,$level=1)
