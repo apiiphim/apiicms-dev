@@ -585,6 +585,95 @@ class Collect extends Base
         }
     }
 
+    // CRAWLER KKPHIM_OLD by APII.ONLINE
+    public function kkphim_goc()
+    {
+        return $this->fetch('admin@collect/kkphim_goc');
+    }
+
+    public function crawl_kkphim_goc_link()
+    {
+        try {
+            $url = input('url');
+            $host = parse_url($url, PHP_URL_HOST);
+            $api_url = str_replace($host, 'phimapi.com', $url);
+            $html = mac_curl_get($api_url);
+            $html = mac_filter_tags($html);
+            $sourcePage = json_decode($html, true);
+            $title = $sourcePage['movie']['name'];
+            $year = $sourcePage['movie']['year'];
+            $kkphim_goc_id = $sourcePage['movie']['_id'];
+            $result = $this->add_movie($title, $year, $kkphim_goc_id, $sourcePage);
+            return $result;
+        } catch (\Throwable $th) {
+            $result = array(
+                'status' => true,
+                'msg' => "Crawl error: " . $th,
+            );
+            return json_encode($result);
+        }
+    }
+
+    public function crawl_kkphim_goc_page()
+    {
+        $url = input('url');
+        $html = mac_curl_get($url);
+        if(empty($html)){
+            return ['code'=>1001, 'msg'=>lang('model/collect/get_html_err') . ', url: ' . $url];
+        }
+        $html = mac_filter_tags($html);
+        $sourcePage = json_decode($html);
+        $listMovies = [];
+
+        if(count($sourcePage->items) > 0) {
+            foreach ($sourcePage->items as $key => $item) {
+                array_push($listMovies, "https://phimapi.com/phim/{$item->slug}|{$item->_id}|{$item->modified->time}|{$item->name}|{$item->origin_name}|{$item->year}");
+            }
+            echo join("\n", $listMovies);
+        } else {
+            echo [];
+        }
+        die();
+    }
+
+    public function crawl_kkphim_goc_movies()
+    {
+        try {
+            $data_post = input('url');
+            $filterType = input('filterType');
+            $filterCategory = input('filterCategory');
+            $url = explode('|', $data_post)[0];
+            $kkphim_goc_id = explode('|', $data_post)[1];
+            $kkphim_goc_update_time 	= explode('|', $data_post)[2];
+            $title = explode('|', $data_post)[3];
+            $org_title = explode('|', $data_post)[4];
+            $year = explode('|', $data_post)[5];
+
+            $host = parse_url($url, PHP_URL_HOST);
+            $api_url = str_replace($host, 'phimapi.com', $url);
+            $html = mac_curl_get($api_url);
+            $html = mac_filter_tags($html);
+            $sourcePage = json_decode($html, true);
+
+            if ($filterType) {
+                $filterType = explode(",", $filterType);
+            }
+            if ($filterCategory) {
+                $filterCategory = explode(",", $filterCategory);
+            }
+            
+            $result = $this->add_movie($title, $year, $kkphim_goc_id, $sourcePage, $filterType, $filterCategory);
+            return $result;
+
+        } catch (Exception $e) {
+            $result = array(
+                'status' => true,
+                'msg' => "Crawl error"
+            );
+            return json_encode($result);
+        }
+    }
+
     // CRAWLER OPHIM by APII.ONLINE
     public function ophim()
     {

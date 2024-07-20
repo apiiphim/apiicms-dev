@@ -47,7 +47,7 @@ layui.define(['element', 'form'], function(exports) {
         layer.open({
             title: false,
             type: 1,
-            content: '<div class="lock-screen"><input type="password" class="unlockedPwd layui-input" placeholder="Nhập mật khẩu của bạn để mở khóa.." autocomplete="off"><button class="unlocked layui-btn">Mở khóa</button><div class="unlockTips"></div></div>',
+            content: '<div class="lock-screen"><input type="password" class="unlockedPwd layui-input" placeholder="Nhập mật khẩu đăng nhập của bạn để mở khóa.." autocomplete="off"><button class="unlocked layui-btn">Mở khóa</button><div class="unlockTips"></div></div>',
             closeBtn: 0,
             shade: 0.95,
             offset: '350px'

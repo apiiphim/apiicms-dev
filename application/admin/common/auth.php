@@ -245,6 +245,7 @@ return array(
         '97' => array("show"=>1,'name' => '[APII] Cào NguonC', 'controller' => 'collect',		'action' => 'nguonc'),
         '98' => array("show"=>1,'name' => '[APII] Cào 3Nguồn', 'controller' => 'collect',		'action' => 'apiiphim'),
         '99' => array("show"=>1,'name' => '[OP] Cào OPhim', 'controller' => 'collect',		'action' => 'ophim_goc'),
+        '100' => array("show"=>1,'name' => '[KK] Cào KKphim', 'controller' => 'collect',		'action' => 'kkphim_goc'),
         // '96' => array("show"=>1,'name' => 'Myanimelist', 'controller' => 'collect',		'action' => 'myanimelist'),
 
     )),
