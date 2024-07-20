@@ -1038,6 +1038,103 @@ class Collect extends Base
             return json_encode($result);
         }
     }
+    // CRAWLER HOẠT HÌNH  NGUỒN GỘP
+    public function apiiphim_hoathinh()
+    {
+        return $this->fetch('admin@collect/apiiphim_hoathinh');
+    }
+
+    public function crawl_apiiphim_hoathinh_link()
+    {
+        try {
+            $url = input('url');
+            $host = parse_url($url, PHP_URL_HOST);
+            $api_url = str_replace($host, 'apii.online', $url);
+            $html = mac_curl_get($api_url);
+            $html = mac_filter_tags($html);
+            $sourcePage = json_decode($html, true);
+            $title = $sourcePage['movie']['name'];
+            $year = $sourcePage['movie']['year'];
+            $apiiphim_hoathinh_id = $sourcePage['movie']['_id'];
+            $result = $this->add_movie($title, $year, $apiiphim_hoathinh_id, $sourcePage);
+            return $result;
+        } catch (\Throwable $th) {
+            $result = array(
+                'status' => true,
+                'msg' => "Crawl error: " . $th,
+            );
+            return json_encode($result);
+        }
+    }
+
+    public function crawl_apiiphim_hoathinh_page()
+    {
+        $url = input('url');
+        $html = mac_curl_get($url);
+        if(empty($html)){
+            return ['code'=>1001, 'msg'=>lang('model/collect/get_html_err') . ', url: ' . $url];
+        }
+        $html = mac_filter_tags($html);
+        $sourcePage = json_decode($html);
+        $listMovies = [];
+
+        if(count($sourcePage->items) > 0) {
+            foreach ($sourcePage->items as $key => $item) {
+                array_push($listMovies, "https://apii.online/apii/phim/{$item->slug}|{$item->_id}|{$item->modified->time}|{$item->name}|{$item->origin_name}|{$item->year}");
+            }
+            echo join("\n", $listMovies);
+        } else {
+            echo [];
+        }
+        die();
+    }
+
+    public function crawl_apiiphim_hoathinh_movies()
+    {
+        try {
+            $data_post = input('url');
+            $filterType = input('filterType');
+            $filterCategory = input('filterCategory');
+            $url = explode('|', $data_post)[0];
+            $apiiphim_hoathinh_id = explode('|', $data_post)[1];
+            $apiiphim_hoathinh_update_time = explode('|', $data_post)[2];
+            $title = explode('|', $data_post)[3];
+            $org_title = explode('|', $data_post)[4];
+            $year = explode('|', $data_post)[5];
+
+            $host = parse_url($url, PHP_URL_HOST);
+            $api_url = str_replace($host, 'apii.online', $url);
+            $html = mac_curl_get($api_url);
+            $html = mac_filter_tags($html);
+            $sourcePage = json_decode($html, true);
+
+
+            if (isset($sourcePage['status']) && $sourcePage['status'] === false) {
+                return json_encode(array(
+                    'status' => false,
+                    'msg' => "Crawl lỗi: URL không hợp lệ hoặc đã bị thay đổi",
+                ));
+            }
+            
+            if ($filterType) {
+                $filterType = explode(",", $filterType);
+            }
+
+            if ($filterCategory) {
+                $filterCategory = explode(",", $filterCategory);
+            }
+
+            $result = $this->add_movie($title, $year, $apiiphim_hoathinh_id, $sourcePage, $filterType, $filterCategory);
+            return $result;
+
+        } catch (Exception $e) {
+            $result = array(
+                'status' => true,
+                'msg' => "Crawl error"
+            );
+            return json_encode($result);
+        }
+    }
 
     // Kết thúc APII
 
@@ -1103,7 +1200,7 @@ class Collect extends Base
             return json_encode($result);
         } catch (\Throwable $th) {
             $result = array(
-                'status' => false, // bật debug php
+                'status' => false, 
                 'post_id' => $vod_id,
                 'msg' => "Crawl error: " . $th,
             );
