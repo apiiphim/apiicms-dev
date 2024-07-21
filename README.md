@@ -1,8 +1,9 @@
 # apiicms-dev
 Hỗ trợ tự động cập nhật và ..... xem thêm tại https://t.me/apiionlines
 # Donate tác giả
-Do hoàn cảnh khó khăn nợ nần nhiều! đang cày bục mặt để trả nợ cũng như nuôi gđ, bác nào thương thì donate cho em nhé
+Em nhận donate của các bác!
 ví USDT TRC20 : TNAaEjUsWFaZLNhdooM3Aqs1kcUacFsZRE
+Em xin chân thành cảm ơn!
 # Hướng dẫn cài đặt
 - Up lên host hoặc vps
 - Giải nén
