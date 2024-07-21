@@ -1,0 +1,115 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<title>Đăng ký người dùng - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}"/>
+<meta name="description" content="{$maccms.site_description}"/>
+{include file="user/include"/}
+</head>
+<body>
+{include file="user/head"/}
+<div class="member-body">
+  <div class="member-bg">
+    <div class="container member-container mini-container" style="padding-top:40px;">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <h2 class="col-sm-9" style="margin-bottom:30px;font-size:24px;"><strong>Đăng ký người dùng</strong></h2>
+      </div>
+    </div>
+    <div class="container member-container mini-container">
+      <form class="form-horizontal center-block ewave-form" method="post" action="{:mac_url('user/reg')}" data-jump="{:mac_url('user/login')}" autocomplete="off">
+        <div class="form-group">
+          <label class="col-sm-12 layer-col-12">Tên tài khoản</label>
+          <div class="col-sm-12 layer-col-12">
+            <input type="text" class="form-control" name="user_name" placeholder="Xin hãy điền tên đăng nhập">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-12 layer-col-12">Mật khẩu</label>
+          <div class="col-sm-12 layer-col-12">
+            <input type="password" class="form-control" name="user_pwd" placeholder="Xin vui lòng nhập mật khẩu">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-12 layer-col-12">Xác nhận lại mật khẩu</label>
+          <div class="col-sm-12 layer-col-12">
+            <input type="password" class="form-control" name="user_pwd2" placeholder="Vui lòng xác nhận lại mật khẩu của bạn">
+          </div>
+        </div>
+        {if $user_config.reg_phone_sms == 1}
+        <div class="form-group">
+          <input type="hidden" name="ac" value="phone">
+          <label class="col-sm-12 layer-col-12">Số điện thoại</label>
+          <div class="col-sm-12 layer-col-12">
+            <div class="input-group">
+              <input type="text" class="form-control ewave-to" name="to" placeholder="Vui lòng nhập số điện thoại di động của bạn" autocomplete="off">
+              <span class="input-group-btn">
+              <input type="button" class="btn member-btn btn-theme ewave-send-code" value="Lấy mã xác minh" data-action="{:mac_url('user/reg_msg')}"/>
+              </span> </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-12 layer-col-12">Mã xác minh điện thoại di động</label>
+          <div class="col-sm-12 layer-col-12">
+            <input type="text" class="form-control" name="code" placeholder="Vui lòng nhập mã xác minh bạn nhận được" autocomplete="off">
+          </div>
+        </div>
+        {elseif $user_config.reg_email_sms == 1}
+        <div class="form-group">
+          <input type="hidden" name="ac" value="email">
+          <label class="col-sm-12 layer-col-12">Địa chỉ email</label>
+          <div class="col-sm-12 layer-col-12">
+            <div class="input-group">
+              <input type="text" class="form-control ewave-to" name="to" placeholder="Vui lòng nhập email" autocomplete="off">
+              <span class="input-group-btn">
+              <input type="button" class="btn member-btn btn-theme ewave-send-code" value="Lấy mã xác minh" data-action="{:mac_url('user/reg_msg')}"/>
+              </span> </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-12 layer-col-12">Mã xác minh email</label>
+          <div class="col-sm-12 layer-col-12">
+            <input type="text" class="form-control" name="code" placeholder="Vui lòng nhập mã xác minh bạn nhận được" autocomplete="off">
+          </div>
+        </div>
+        {/if}
+        {if $user_config.reg_verify == 1}
+        <div class="form-group">
+          <label class="col-sm-12 layer-col-12">Mã xác minh hình ảnh</label>
+          <div class="col-sm-12 layer-col-12">
+            <div class="row">
+              <div class="col-xs-6">
+                <input type="text" class="form-control" name="verify" placeholder="Vui lòng nhập mã xác minh ở hình bên phải" autocomplete="off">
+              </div>
+              <div class="col-xs-6"><img class="form-control p-0 ewave-verify-img" src="{:mac_url('verify/index')}" alt="Mã xác nhận" title="Bấm để làm mới"/></div>
+            </div>
+          </div>
+        </div>
+        {/if}
+        <div class="form-group">
+          <div class="col-xs-12 layer-col-12">
+            <button type="submit" class="btn member-btn btn-block btn-theme bg-theme ewave-submit text-white">Đăng ký ngay</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12 layer-col-12">
+            <p class="form-control-static text-center"> <a href="{:mac_url('user/login')}" target="_top"><i class="fa fa-user"></i>&nbsp;Bạn đã có tài khoản?</a> </p>
+          </div>
+        </div>
+        {if $GLOBALS['config']['connect']['qq']['status'] eq 1 || $GLOBALS['config']['connect']['weixin']['status'] eq 1}
+        <div class="row">
+          <div class="col-xs-12 layer-col-12 other-login-box">
+            <h5 class="mt-0">Đăng ký nhanh</h5>
+            {if $GLOBALS['config']['connect']['qq']['status'] eq 1 && !empty($GLOBALS['config']['connect']['qq']['key']) && !empty($GLOBALS['config']['connect']['qq']['secret'])} <a class="user-login-icon qq" href="{:mac_url('user/oauth',['type'=>'qq'])}"><i class="fa fa-qq"></i></a> {/if}
+            {if $GLOBALS['config']['connect']['weixin']['status'] eq 1 && !empty($GLOBALS['config']['connect']['weixin']['key']) && !empty($GLOBALS['config']['connect']['weixin']['secret'])} <a class="user-login-icon wechat" href="{:mac_url('user/oauth',['type'=>'weixin'])}"><i class="fa fa-wechat"></i></a> {/if} </div>
+        </div>
+        {/if}
+      </form>
+    </div>
+  </div>
+</div>
+{include file="user/foot"/}
+</body>
+</html>

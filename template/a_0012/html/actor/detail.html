@@ -1,0 +1,87 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="vod-info actor-info gap clearfix">
+    <div class="pic"><div class="img-wrapper lazyload" data-original="{$obj.actor_pic|mac_url_img}"></div></div>
+    <div class="info">
+      <h3><a href="{$obj|mac_url_actor_detail}"{if !empty($obj.actor_color)} style="color:#{$obj.actor_color};"{/if}>{$obj.actor_name}</a></h3>
+      <p class="row">
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow"><i class="fa fa-heart-o fa-fw"></i>&nbsp;Bí danh: {$obj.actor_alias|default="暂无"}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow"><i class="fa fa-venus-mars fa-fw"></i>&nbsp;Giới tính: {$obj.actor_sex|default="暂无"}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow"><i class="fa fa-flag fa-fw"></i>&nbsp;Quốc gia: {$obj.actor_area|default="未知"}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow"><i class="fa fa-arrows-v fa-fw"></i>&nbsp;chiều cao: {$obj.actor_height|default="未知"}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow"><i class="fa fa-balance-scale fa-fw"></i>&nbsp;trọng lượng cơ thể: {$obj.actor_weight|default="未知"}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow"><i class="fa fa-star-o fa-fw"></i>&nbsp;Chòm sao: {$obj.actor_starsign|default="未知"}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow"><i class="fa fa-eyedropper fa-fw"></i>&nbsp;Nhóm máu: {$obj.actor_blood|default="未知"}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow"><i class="fa fa-birthday-cake fa-fw"></i>&nbsp;Sinh nhật: {$obj.actor_birthday|default="未知"}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow"><i class="fa fa-map-marker fa-fw"></i>&nbsp;Nơi sinh: {$obj.actor_birtharea|default="未知"}</span>
+      </p>
+      <div class="btn-box"><a class="ewave-digg" href="javascript:;" data-id="{$obj.actor_id}" data-mid="{$maccms.mid}" data-type="up"><i class="fa fa-thumbs-o-up"></i>Thích&nbsp;<span class="ewave-digg-num">{$obj.actor_up}</span></a></div>
+      <div class="qrcode hidden-xs hidden-sm hidden-md">
+        <div class="img">
+          <div class="ewave-qrcode"></div>
+          <p>Xem trên điện thoại</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actor-detail-box layout-box gap">
+    <ul class="clearfix gap">
+      <li class="ewave-tab actor-tab active" data-target="#actor-content">Thông tin cá nhân</li>
+      <li class="ewave-tab actor-tab" data-target="#actor-vod">Tham gia đóng phim và truyền hình</li>
+      <li class="ewave-tab actor-tab" data-target="#actor-art">Thông tin liên quan</li>
+    </ul>
+    {php}$vod_show=0;$art_show=0;{/php}
+    <div class="actor-tab-box">
+      <div class="ewave-tab-content actor-content" id="actor-content">
+        {if !empty($obj.actor_content)}
+        {$obj.actor_content|mac_url_content_img}
+        {else/}
+        <div class="ewave-empty"><i class="fa fa-minus-circle"></i>&nbsp;Chưa nhập hồ sơ cá nhân của {$obj.actor_name}</div>
+        {/if}
+      </div>
+      <div class="ewave-tab-content actor-vod" id="actor-vod" style="display:none;">
+        <div class="vod-list">
+          <ul class="row">
+            {maccms:vod num="61" actor="'.$obj['actor_name'].'" by="hits_week" order="desc"}
+            {if $key lt 61}
+            <li class="col-xs-4 col-md-3 col-lg-2">{include file="block/vod_item"}</li>
+            {/if}
+            {php}$vod_show++;{/php}
+            {/maccms:vod}
+            {if $vod_show==0}
+            <div class="ewave-empty"><i class="fa fa-minus-circle"></i>&nbsp;Xin lỗi, {$obj.actor_name} chưa tham gia đóng phim và truyền hình</div>
+            {/if}
+          </ul>
+        </div>
+      </div>
+      <div class="ewave-tab-content actor-art art-box clearfix" id="actor-art" style="display:none;">
+        <ul class="art-list clearfix mt-0" style="overflow:hidden;">
+          {maccms:art num="11" wd="'.$obj['actor_name'].'" by="time" order="desc"}
+          {if $key == 11}
+          {else/}
+          {include file="block/art_item"}
+          {/if}
+          {php}$art_show++;{/php}
+          {/maccms:art}
+          {if $art_show==0}
+          <div class="ewave-empty"><i class="fa fa-minus-circle"></i>&nbsp;Xin lỗi, không tìm thấy thông tin liên quan của {$obj.actor_name}</div>
+          {/if}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {include file="block/comment"}
+</div>
+{include file="block/foot"}
+<span class="mac_hits hide" data-mid="{$maccms.mid}" data-id="{$obj.actor_id}" data-type="insert"></span>
+</body>
+</html>

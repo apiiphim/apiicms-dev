@@ -1,0 +1,74 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{php}$member_page='buy';{/php}
+<title>在线充值 - 会员中心 -{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}"/>
+<meta name="description" content="{$maccms.site_description}"/>
+{include file="user/include"/}
+</head>
+<body>
+{include file="user/head"/}
+<div class="container member-container clearfix">
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title">积分充值</h2>
+    <div class="member-tab-list">
+      <ul class="clearfix">
+        <li class="ewave-tab active" data-target="#member-buy-1">在线充值</li>
+        <li class="ewave-tab" data-target="#member-buy-2">充值卡充值</li>
+      </ul>
+    </div>
+    <form class="form-horizontal center-block ewave-form ewave-tab-content mt-10" id="member-buy-1" action="{:mac_url('user/buy')}" method="post" data-jump="{:mac_url('user/pay')}?order_code=">
+      <input type="hidden" name="flag" value="pay">
+      <div class="form-group">
+        <label class="col-xs-4 col-sm-2 control-label">剩余积分</label>
+        <div class="col-xs-8 col-sm-10">
+          <p class="form-control-static pt-xs-0 pt-sm-0"><span class="text-red">{$user.user_points}</span></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">充值金额</label>
+        <div class="col-sm-8">
+          <input type="text" name="price" class="form-control" value="" placeholder="请输入充值金额" autocomplete="off">
+          <span class="help-block">最小充值金额为<span class="text-red">{$config.min}</span>元，1元可以兑换<span class="text-red">{$config.scale}</span>个积分</span> </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-8">
+          <button type="submit" class="btn member-btn btn-block btn-theme ewave-submit">提交</button>
+        </div>
+      </div>
+    </form>
+    <form class="form-horizontal center-block ewave-form ewave-tab-content mt-10" id="member-buy-2" action="{:mac_url('user/buy')}" method="post" data-jump="refresh-wait" style="display:none;">
+      <input type="hidden" name="flag" value="card">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">充值卡号</label>
+        <div class="col-sm-8"> {if !empty($GLOBALS['config']['pay']['card']['url'])}
+          <div class="input-group">
+            <input type="text" class="form-control ewave-to" name="card_no" placeholder="请输入您的充值卡号" autocomplete="off">
+            <span class="input-group-btn"> <a class="btn member-btn btn-theme" href="{$GLOBALS['config']['pay']['card']['url']}" target="_blank">去购买充值卡密</a> </span> </div>
+          {else/}
+          <input type="text" class="form-control ewave-to" name="card_no" placeholder="请输入充值卡号" autocomplete="off">
+          {/if} </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">充值密码</label>
+        <div class="col-sm-8">
+          <input type="text" name="card_pwd" class="form-control" value="" placeholder="请输入充值卡密码" autocomplete="off">
+          <span class="help-block">请到卡密平台或联系管理员购买充值卡</span> </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-8">
+          <button type="submit" class="btn member-btn btn-block btn-theme ewave-submit">提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{include file="user/foot"/}
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<div class="vod-info gap clearfix{if $maccms.aid==15} hidden-lg hidden-xl hidden-xxl{/if}">
+    <div class="pic"><img class="lazyload" src="{$maccms.path_tpl}images/load.gif" data-original="{$obj.vod_pic|mac_url_img}"></div>
+    <div class="info">
+      <h3><a href="{$obj|mac_url_vod_detail}"{if !empty($obj.vod_color)} style="color:#{$obj.vod_color};"{/if}>{$obj.vod_name}</a></h3>
+      <p class="row">
+        <span class="col-xs-12 col-sm-6 col-md-12 text-overflow">Thể loại: <a href="{$obj.type|mac_url_type}">{$obj.type.type_name}</a>{if !empty($obj.vod_class)}{maccms:foreach name=":explode(',',$obj.vod_class)"}<a href="{:mac_url_type($obj.type,['class'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{/if}</span>
+        <span class="col-xs-6 col-md-4 text-overflow">Quốc gia: {if !empty($obj.vod_area)}{maccms:foreach name=":explode(',',$obj.vod_area)"}<a href="{:mac_url_type($obj.type,['area'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{else/}未知{/if}</span>
+        <span class="col-xs-6 col-md-4 text-overflow">Năm sản xuất：{if !empty($obj.vod_year)}{maccms:foreach name=":explode(',',$obj.vod_year)"}<a href="{:mac_url_type($obj.type,['year'=>$vo],show)}">{$vo}</a>{/maccms:foreach}{else/}未知{/if}</span>
+        <span class="col-xs-12 col-sm-6 col-md-4 text-overflow">Đạo diễn：{$obj.vod_director|mac_url_create='director','vod','search',''}</span>
+        <span class="col-xs-12 text-row text-row-2">Diễn viên chính：{if !empty($obj.vod_actor)}{php}$spliter=array(' / ', '/', '|', ',', '，', ',,');{/php}{maccms:foreach name=":explode(',',trim(str_replace($spliter, ',', $obj.vod_actor),','))" id="actor"}{php}$has_actor=0;{/php}{maccms:actor name="'.$actor.'" num="1" by="time" order="desc"}<a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a>{php}$has_actor=1;{/php}{/maccms:actor}{if $has_actor==0}<a href="{:mac_url('vod/search',['actor'=>$actor])}" target="_blank">{$actor}</a>{/if}{/maccms:foreach}{else/}Không xác định{/if}</span>
+        <span class="col-xs-12">Trạng thái: {if ($obj.type.type_id == 1) || ($obj.type_id_1 == 1)||($obj.type.type_name == 'Bộ') || ($obj.type_1.type_name == 'Bộ')}{$obj.vod_remarks|default='HD'}{elseif !empty($obj.vod_remarks)/}{$obj.vod_remarks}{elseif !empty($obj.vod_serial)/}Cập nhật mới{$obj.vod_serial}集{else/}Hoàn thành{/if}</span>
+      </p>
+      <div class="text text-row text-row-2">Giới thiệu: {$obj.vod_blurb}</div>
+      <div class="btn-box">{if !empty($obj.vod_play_list) && $maccms.aid!=15 && (empty($obj.vod_copyright) || ($GLOBALS.config.app.copyright_status == 0)||($GLOBALS.config.app.copyright_status gt 2))}<a href="{$obj|mac_url_vod_play}"><i class="fa fa-play-circle-o"></i>Xem phim</a>{/if}{if $GLOBALS.config.user.status==1}<a  class="fav-btn ewave-ulog ewave-ulog-get ewave-ulog-get-{$obj.vod_id}" href="javascript:;" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" data-type="2"><i class="fa fa-heart-o"></i>Yêu thích</a>{/if}</div>
+      <div class="qrcode hidden-xs hidden-sm hidden-md">
+        <div class="img">
+          <div class="ewave-qrcode"></div>
+          <p>Xem trên điện thoại</p>
+        </div>
+      </div>
+    </div>
+  </div>

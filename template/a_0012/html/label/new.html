@@ -1,0 +1,39 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html>
+<head>
+{php}$label_name='new';{/php}
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="layout-box clearfix gap">
+    <div class="index-ranking gap">
+      <h2>{$type.type_name} Hot</h2>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-lg-6">
+        <ul class="ranking-list">
+          {maccms:vod num="50" by="time" order="desc"}
+          <li class="ranking-item">{include file="block/vod_item_ranking"}</li>
+          {/maccms:vod}
+        </ul>
+      </div>
+      <div class="col-xs-12 col-lg-6">
+        <ul class="ranking-list">
+          {maccms:vod num="100" by="time" order="desc"}
+          {if $key gt 50}
+          <li class="ranking-item new-item">{include file="block/vod_item_ranking"}</li>
+          {/if}
+          {/maccms:vod}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{if $__PAGING__.page_total gt 1}
+<div class="member-page">
+      <a class="hidden-xs" href="{if $__PAGING__.page_current gt 1}{$__PAGING__.page_url|str_replace='PAGELINK',1,###}{else/}javascript:eWave.Layer.Error('Đây đã là trang đầu tiên rồi');{/if}" title="trang đầu">Trang đầu</a>
+      <a href="{if $__PAGING__.page_current gt 1}{$__PAGING__.page_url|str_replace='PAGELINK',$__PAGING__.page_prev,###}{else/}javascript:eWave.Layer.Error('Không có trang trước');{/if}" title="Trang trước">Trang trước</a>
+      {volist name="$__PAGING__.page_num" id="num"}
+      {if $__PAGING__.page_current == $num}
+      <a class="member-page-current hidden-xs" href="javascript:;" title="第{$num}页">{$num}</a>
+      <a class="member-page-current hidden-sm hidden-md hidden-lg hidden-xl hidden-xxl" href="javascript:;" title="第{$num}页">{$num}/{$__PAGING__.page_total}</a>
+      {else}
+      <a class="hidden-xs" href="{$__PAGING__.page_url|str_replace='PAGELINK',$num,###}" title="第{$num}页" >{$num}</a>
+      {/if}
+      {/volist}
+      <a href="{if $__PAGING__.page_current lt $__PAGING__.page_total}{$__PAGING__.page_url|str_replace='PAGELINK',$__PAGING__.page_next,###}{else/}javascript:eWave.Layer.Error('Không có trang tiếp theo');{/if}" title="Trang tiếp theo">Trang tiếp</a>
+      <a class="hidden-xs" href="{if $__PAGING__.page_current lt $__PAGING__.page_total}{$__PAGING__.page_url|str_replace='PAGELINK',$__PAGING__.page_total,###}{else/}javascript:eWave.Layer.Error('Đây là trang cuối cùng');{/if}" title="Trang cuối">trang cuối</a>
+    </div>
+    {/if}
+    {if $__PAGING__.record_total==0}
+    <div class="member-empty text-center"><i class="fa fa-minus-circle"></i>&nbsp;Không có thông tin</div>
+    {/if}

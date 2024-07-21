@@ -1,0 +1,48 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<div class="vod-list layout-box gap pb-0">
+        <h2>Phim liên quan</h2>
+        <div class="more-box">
+          <ul class="row">
+            {php}
+            $related_num=12;
+            $rel_num=0;
+            $my_key=1;
+            $related_id=$obj['vod_id'];
+            if (!empty($obj['vod_rel_vod'])){
+              $rel_num=count(explode(',',trim($obj['vod_rel_vod'],',')));
+              if ($rel_num > $related_num) {
+                $rel_num=$related_num;
+              }
+              $related_num-=$rel_num;
+            }
+            {/php}
+            {if !empty($rel_num)}
+            {maccms:vod num="'.$rel_num.'" rel="'.$obj['vod_rel_vod'].'"}
+            {if $vo.vod_id != $obj.vod_id}
+            <li class="col-xs-4 col-md-3 col-xl-2{if $my_key gt 6} hidden-xs hidden-sm{/if}{if $my_key gt 8} hidden-md hidden-lg{/if}">{include file="block/vod_item"}</li>
+            {php}$related_id.=",".$vo['vod_id'];$my_key++;{/php}
+            {else/}
+            {php}$rel_num--;$related_num++;{/php}
+            {/if}
+            {/maccms:vod}
+            {/if}
+            {if !empty($related_num)}
+            {maccms:vod num="'.$related_num.'" not="'.$related_id.'" type="current" by="hits_week" order="desc"}
+            <li class="col-xs-4 col-md-3 col-xl-2{if $my_key gt 6} hidden-xs hidden-sm{/if}{if $my_key gt 8} hidden-md hidden-lg{/if}">{include file="block/vod_item"}</li>
+            {php}$related_id.=",".$vo['vod_id'];$rel_num++;$related_num--;$my_key++;{/php}
+            {/maccms:vod}
+            {/if}
+            {if !empty($related_num)}
+            {maccms:vod num="'.$related_num.'" not="'.$related_id.'" by="hits_week" order="desc"}
+            <li class="col-xs-4 col-md-3 col-xl-2{if $my_key gt 6} hidden-xs hidden-sm{/if}{if $my_key gt 8} hidden-md hidden-lg{/if}">{include file="block/vod_item"}</li>
+            {php}$related_id.=",".$vo['vod_id'];$rel_num++;$related_num--;$my_key++;{/php}
+            {/maccms:vod}
+            {/if}
+          </ul>
+        </div>
+      </div>
+<div class="banner-layout-box gap ewave-banner-box ewave-remove-box">
+        <div class="ewave-banner-wrapper ewave-remove-list" id="detail-banner-2"></div>
+        <script src="{$maccms.path_ads}detail_banner_2.js"></script>
+      </div>

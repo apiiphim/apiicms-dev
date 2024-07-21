@@ -1,0 +1,13 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ --> 
+ <a href="{$vo|mac_url_art_detail}" title="{$vo.art_name}">
+          <div class="ranking-item-left"><span class="ranking-item-icon">NO</span> <span class="ranking-item-num">{$key}</span>
+            <div class="ranking-item-cover">
+              <div class="img-wrapper lazyload" data-original="{$vo.art_pic|mac_url_img}"></div>
+            </div>
+          </div>
+          <div class="ranking-item-info">
+            <h4 class="text-overflow"{if !empty($vo.art_color)} style="color:#{$vo.art_color};"{/if}>{$vo.art_name}</h4>
+            <p class="text-overflow">{$vo.art_blurb|mac_substring=30}</p>
+          </div>
+          </a> 

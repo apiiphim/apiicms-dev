@@ -1,0 +1,25 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<li class="art-item row clearfix">
+            {php}
+            $pattern="/<[img|IMG].*?src=[\'|\"](.*?(?:[\.gif|\.jpg|\.png|\.jpeg|\.bmp]))[\'|\"].*?[\/]?>/";
+            preg_match_all($pattern,$vo['art_content'],$imgArray);
+            {/php}
+            {if count($imgArray.1) egt 3 && $maccms.mid !=3}
+            <h3 class="art-item-title-2 col-xs-12 text-row-2 text-row-xl-1 text-row-xll-1"><a href="{$vo|mac_url_art_detail}" title="{$vo.art_name}"{if !empty($vo.art_color)} style="color:#{$vo.art_color};"{/if}>{$vo.art_name}</a></h3>
+            <div class="art-item-img-box clearfix">
+              {maccms:foreach name="$imgArray.1" id="img" key="key_img"}
+              {if $key_img lt 3}
+              <div class="art-item-img col-xs-6 col-md-4{if $key_img gt 1} hidden-xs hidden-sm{/if}"><a class="img-wrapper lazyload" data-original="{$img|mac_url_img}" href="{$vo|mac_url_art_detail}" title="{$vo.art_name}"></a></div>
+              {/if}
+              {/maccms:foreach}
+            </div>
+            {else/}
+            <div class="art-item-cover col-xs-4"><a class="img-wrapper lazyload" data-original="{$vo.art_pic|mac_url_img}" href="{$vo|mac_url_art_detail}" title="{$vo.art_name}"></a></div>
+            <div class="art-item-info col-xs-8">
+            <h3 class="art-item-title text-row-1 text-row-xs-2 text-row-sm-2"><a href="{$vo|mac_url_art_detail}" title="{$vo.art_name}"{if !empty($vo.art_color)} style="color:#{$vo.art_color};"{/if}>{$vo.art_name}</a></h3>
+              <p class="art-item-desc text-row-3 text-row-md-2 text-row-xl-2 hidden-xs hidden-sm">{$vo.art_blurb}</p>
+              <div class="art-item-foot hidden-xs clearfix"><a href="{$vo.type|mac_url_type}">{$vo.type.type_name}</a><span>{$vo.art_time|date='Y-m-d',###}</span></div>
+            </div>
+            {/if}
+          </li>

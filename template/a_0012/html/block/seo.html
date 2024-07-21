@@ -1,0 +1,168 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{if $maccms.aid==1 || $maccms.aid==10}
+<!--首页 index/index 及 vod/index -->
+<title>{if !empty($maccms.seo.vod.name)}{$maccms.seo.vod.name} - {/if}{$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($maccms.seo.vod.key)}{$maccms.seo.vod.key}{else/}{$maccms.site_keywords}{/if}" />
+<meta name="description" content="{if !empty($maccms.seo.vod.des)}{$maccms.seo.vod.des}{else/}{$maccms.site_description}{/if}"/>
+{elseif $maccms.aid==11/}
+<!--视频分类页 vod/type -->
+<title>{if !empty($obj.type_title)}{$obj.type_title}{else/}{$obj.type_name}{/if} - 第{$param.page}页 - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($obj.type_key)}{$obj.type_key}{else/}{$obj.type_name},好看的{$obj.type_name},{$obj.type_name}排行榜,最新{$obj.type_name}{/if}" />
+<meta name="description" content="{if !empty($obj.type_des)}{$obj.type_des}{else/}{$obj.type_name}栏目收集整理最新好看的{$obj.type_name}大全，提供{$obj.type_name}排行榜推荐，为网友提供高画质的{$obj.type_name}{/if}" />
+{elseif $maccms.aid==12/}
+<!--视频筛选页 vod/show -->
+<title>{$param.year}{$param.area}{$param.lang}{if !empty($param.letter)}首字母{$param.letter}{/if}{$param.version}{$param.class}{$obj.type_name}{$param.state}{if $param.by=='hits'}排行榜{/if} - 第{$param.page}页 - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($obj.type_key)}{$obj.type_key}{else/}{$obj.type_name},好看的{$obj.type_name},{$obj.type_name}排行榜,最新{$obj.type_name}{/if}" />
+<meta name="description" content="{if !empty($obj.type_des)}{$obj.type_des}{else/}{$obj.type_name}栏目收集整理最新好看的{$obj.type_name}大全，提供{$obj.type_name}排行榜推荐，为网友提供高画质的{$obj.type_name}{/if}" />
+{elseif $maccms.aid==13/}
+<!--视频搜索页 vod/search -->
+<title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag} - 影视搜索 - {$maccms.site_name}</title>
+<meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}">
+<meta name="description" content="{$maccms.site_description}">
+{elseif $maccms.aid==14/}
+<!--视频详情页 vod/detail -->
+<title>《{$obj.vod_name}》高清在线观看{if !empty($obj.vod_down_list)} - 《{$obj.vod_name}》高清下载{/if} - {$obj.type.type_name} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name},{$obj.vod_name}在线观看,{$obj.vod_name}高清在线观看,{$obj.vod_name}手机观看{if !empty($obj.vod_down_list)},{$obj.vod_name}高清下载{/if},{$obj.type.type_name}"/>
+<meta name="description" content="《{$obj.vod_name}》讲述的是：{$obj.vod_content|mac_filter_html|mac_substring=140}"/>
+{elseif $maccms.aid==15/}
+<!--视频播放页 vod/play -->
+<title>《{$obj.vod_name}》 {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']} - 正在播放 - {$obj.type.type_name} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name},{$obj.vod_name}在线观看,{$obj.type.type_name}"/>
+<meta name="description" content="《{$obj.vod_name}》讲述的是：{$obj.vod_content|mac_filter_html|mac_substring=140}"/>
+{elseif $maccms.aid==16/}
+<!--视频下载页 vod/down -->
+<title>《{$obj.vod_name}》 {$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}高清下载 - {$obj.type.type_name} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name},{$obj.vod_name}高清,{$obj.type.type_name}"/>
+<meta name="description" content="《{$obj.vod_name}》讲述的是：{$obj.vod_content|mac_filter_html|mac_substring=140}"/>
+{elseif $maccms.aid==17/}
+<!--视频角色页 vod/role -->
+<title>《{$obj.vod_name}》角色 - 《{$obj.vod_name}》演员表 - {$obj.type.type_name} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name}角色,{$obj.vod_name}演员表"/>
+<meta name="description" content="《{$obj.vod_name}》讲述的是：{$obj.vod_content|mac_filter_html|mac_substring=140}"/>
+{elseif $maccms.aid==20/}
+<!--文章首页 art/index -->
+<title>{if !empty($maccms.seo.art.name)}{$maccms.seo.art.name}{else/}文章首页{/if} - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($maccms.seo.art.key)}{$maccms.seo.art.key}{else/}{$maccms.site_keywords}{/if}" />
+<meta name="description" content="{if !empty($maccms.seo.art.des)}{$maccms.seo.art.des}{else/}{$maccms.site_description}{/if}" />
+{elseif $maccms.aid==21/}
+<!--文章分类页 art/type -->
+<title>{if !empty($obj.type_title)}{$obj.type_title}{else/}{$obj.type_name}{/if} - 第{$param.page}页 - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($obj.type_key)}{$obj.type_key}{else/}{$obj.type_name},好看的{$obj.type_name},{$obj.type_name}排行榜,最新{$obj.type_name}{/if}" />
+<meta name="description" content="{if !empty($obj.type_des)}{$obj.type_des}{else/}{$obj.type_name}栏目收集整理最新好看的{$obj.type_name}大全，提供{$obj.type_name}排行榜推荐{/if}" />
+{elseif $maccms.aid==22/}
+<!--文章筛选页 art/show -->
+<title>{if !empty($obj.type_title)}{$obj.type_title}{else/}{$obj.type_name}{/if} - 第{$param.page}页 - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($obj.type_key)}{$obj.type_key}{else/}{$obj.type_name},好看的{$obj.type_name},{$obj.type_name}排行榜,最新{$obj.type_name}{/if}" />
+<meta name="description" content="{if !empty($obj.type_des)}{$obj.type_des}{else/}{$obj.type_name}栏目收集整理最新好看的{$obj.type_name}大全，提供{$obj.type_name}排行榜推荐{/if}" />
+{elseif $maccms.aid==23/}
+<!--文章搜索页 art/search -->
+<title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag} - 文章搜索 - {$maccms.site_name}</title>
+<meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}">
+<meta name="description" content="{$maccms.site_description}">
+{elseif $maccms.aid==24/}
+<!--文章详情页 art/detail -->
+<title>{if !empty($obj.art_page_list[$param['page']]['title'])}{$obj.art_page_list[$param['page']]['title']} - {/if}{$obj.art_name}{if $__PAGING__.page_total gt 1} - 第{$param.page}页{/if} - {$obj.type.type_name} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.art_tag},{$obj.art_name}">
+<meta name="description" content="{if !empty($obj.art_page_list[$param['page']]['note'])}{$obj.art_page_list[$param['page']]['note']},{/if}{$obj.art_blurb}">
+{elseif $maccms.aid==30/}
+<!--专题列表页 topic/index -->
+<title>{if !empty($maccms.seo.topic.name)}{$maccms.seo.topic.name}{else/}专题频道 - 第{$param.page}页{/if} - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($maccms.seo.topic.key)}{$maccms.seo.topic.key}{else/}{$maccms.site_keywords}{/if}" />
+<meta name="description" content="{if !empty($maccms.seo.topic.des)}{$maccms.seo.topic.des}{else/}{$maccms.site_description}{/if}" />
+{elseif $maccms.aid==34/}
+<!--专题详情页 topic/detail -->
+<title>{$obj.topic_name}-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.topic_name}"/>
+<meta name="description" content="{$obj.topic_content|mac_filter_html|mac_substring=140}"/>
+{elseif $maccms.aid==80/}
+<!--演员首页 actor/index -->
+<title>{if !empty($maccms.seo.actor.name)}{$maccms.seo.actor.name}{else/}明星库{/if} - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($maccms.seo.actor.key)}{$maccms.seo.actor.key}{else/}{$maccms.site_keywords}{/if}" />
+<meta name="description" content="{if !empty($maccms.seo.actor.des)}{$maccms.seo.actor.des}{else/}{$maccms.site_description}{/if}" />
+{elseif $maccms.aid==81/}
+<!--演员分类页 actor/type -->
+<title>{if !empty($obj.type_title)}{$obj.type_title}{else/}{$obj.type_name}{/if} - 第{$param.page}页 - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($obj.type_key)}{$obj.type_key}{else/}{$obj.type_name},{$obj.type_name}排行榜,最新{$obj.type_name}{/if}" />
+<meta name="description" content="{if !empty($obj.type_des)}{$obj.type_des}{else/}{$obj.type_name}栏目收集整理最新{$obj.type_name}大全，提供{$obj.type_name}排行榜推荐{/if}" />
+{elseif $maccms.aid==82/}
+<!--演员筛选页 actor/show -->
+<title>{$param.sex}{$param.area}{$param.blood}{if !empty($param.letter)}首字母{$param.letter}{/if}{$param.class}{$obj.type_name}{if $param.by=='hits'}排行榜{/if} - 第{$param.page}页 - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($obj.type_key)}{$obj.type_key}{else/}{$obj.type_name},{$obj.type_name}排行榜,最新{$obj.type_name}{/if}" />
+<meta name="description" content="{if !empty($obj.type_des)}{$obj.type_des}{else/}{$obj.type_name}栏目收集整理{$obj.type_name}大全，提供{$obj.type_name}排行榜推荐{/if}" />
+{elseif $maccms.aid==83/}
+<!--演员搜索页 actor/search -->
+<title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag} - 演员搜索 - {$maccms.site_name}</title>
+<meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}">
+<meta name="description" content="{$maccms.site_description}">
+{elseif $maccms.aid==84/}
+<!--演员详情页 actor/detail -->
+<title>{$obj.actor_name}个人资料 - {$obj.actor_name}演过的电视剧 - {$obj.actor_name}电影全集 - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.actor_name}个人资料,{$obj.actor_name}演过的电视剧,{$obj.actor_name}电影全集,{$obj.actor_name}最新电影,{$obj.actor_name}最新电视剧">
+<meta name="description" content="{$maccms.site_name}为你收集了{$obj.actor_name}个人资料包括了{$obj.actor_name}最新演过的电视剧,{$obj.actor_name}电影全集,以及{$obj.actor_name}图片剧照最近动态等信息希望你能喜欢。">
+{elseif $maccms.aid==90/}
+<!--角色首页 role/index -->
+<title>{if !empty($maccms.seo.role.name)}{$maccms.seo.role.name}{else/}角色库{/if} - {$maccms.site_name}</title>
+<meta name="keywords" content="{if !empty($maccms.seo.role.key)}{$maccms.seo.role.key}{else/}{$maccms.site_keywords}{/if}" />
+<meta name="description" content="{if !empty($maccms.seo.role.des)}{$maccms.seo.role.des}{else/}{$maccms.site_description}{/if}" />
+{elseif $maccms.aid==93/}
+<!--角色搜索页 role/search -->
+<title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag} - 角色搜索 - {$maccms.site_name}</title>
+<meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}">
+<meta name="description" content="{$maccms.site_description}">
+{elseif $maccms.aid==94/}
+<!--角色详情页 role/detail -->
+<title>《{$obj.data.vod_name}》角色 {$obj.role_name}资料 - {$obj.role_name}饰演者{$obj.role_actor}参演影视剧 - {$maccms.site_name}</title>
+<meta name="keywords" content="《{$obj.data.vod_name}》角色 {$obj.role_name}资料,{$obj.role_name}饰演者{$obj.role_actor}参演影视剧">
+<meta name="description" content="{$maccms.site_name}为你收集了《{$obj.data.vod_name}》角色 {$obj.role_name}资料,以及{$obj.role_name}饰演者{$obj.role_actor}的资料及参演影视剧">
+{elseif $maccms.aid==100/}
+<!--剧情首页 plot/index -->
+<title>影视剧情介绍-{$maccms.site_name}</title>
+<meta name="keywords" content="影视剧情,影视剧情介绍">
+<meta name="description" content="{$maccms.site_name}为您提供最新影视剧情,影视分集剧情介绍,让您可以随时了解最新影视剧透。">
+{elseif $maccms.aid==103/}
+<!--剧情搜索页 plot/search -->
+<title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag} - 剧情搜索 - {$maccms.site_name}</title>
+<meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}">
+<meta name="description" content="{$maccms.site_description}">
+{elseif $maccms.aid==104/}
+<!--剧情详情页 plot/detail -->
+<title>{$obj.vod_name}分集剧情介绍-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name}剧情介绍,{$obj.vod_name}分集剧情介绍" />
+<meta name="description" content="{$obj.vod_name}{$obj['vod_plot_list'][$param['page']]['name']}分集剧情介绍：{$obj['vod_plot_list'][$param['page']]['detail']|mac_filter_html|mac_substring=100}" />
+{elseif $maccms.aid==2/}
+<!--网站地图 map/index -->
+<title>网站地图 - {$maccms.site_name}</title>
+<meta name="keywords" content="网站地图,{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif $maccms.aid==4/}
+<!--留言本 gbook/index -->
+<title>问题反馈 - {$maccms.site_name}</title>
+<meta name="keywords" content="留言本,问题反馈,{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif $maccms.aid==7 && $label_name=='new'/}
+<!--最新更新页 label/new -->
+<title>最新更新的100个电视剧、电影、动漫、综艺节目 视频 - {$maccms.site_name}</title>
+<meta name="keywords" content="最新更新,{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif $maccms.aid==7 && $label_name=='ranking'/}
+<!--排行榜页 label/ranking-->
+<title>全站排行榜 - {$maccms.site_name}</title>
+<meta name="keywords" content="全站排行榜,热播榜,{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif $maccms.aid==7 && $label_name=='flink'/}
+<!--友情链接页 label/flink -->
+<title>友情链接 - {$maccms.site_name}</title>
+<meta name="keywords" content="友情链接,{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif $maccms.aid==7 && $label_name=='help_xunlei'/}
+<!--迅雷帮助页 label/help_xunlei -->
+<title>迅雷下载帮助 - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif $maccms.aid==7 && $label_name=='help_baidu'/}
+<!--百度网盘帮助页 label/help_baidu -->
+<title>百度网盘下载帮助 - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{/if}

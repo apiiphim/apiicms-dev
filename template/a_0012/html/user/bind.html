@@ -1,0 +1,57 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{php}$member_page='index';{/php}
+<title>绑定{if $param.ac == 'phone'}手机{else/}邮箱{/if} - 会员中心 - {$maccms.site_name}</title>
+<meta name="keywords" content="绑定{if $param.ac == 'phone'}手机{else/}邮箱{/if}">
+<meta name="description" content="绑定{if $param.ac == 'phone'}手机{else/}邮箱{/if}">
+{include file="user/include" /}
+</head>
+<body>
+{include file="user/head" /}
+<div class="container member-container clearfix">
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title"><a href="{:mac_url('user/info')}">修改信息</a>&nbsp;/&nbsp;绑定{if $param.ac == 'phone'}手机{else/}邮箱{/if}</h2>
+      <div class="member-tab-list">
+        <ul class="clearfix">
+          <li><a href="{:mac_url('user/index')}">基本资料</a></li>
+          <li class="active"><a href="{:mac_url('user/info')}">修改信息</a></li>
+          <li><a href="{:mac_url('user/popedom')}">我的权限</a></li>
+        </ul>
+      </div>
+      <div class="member-listcon">
+        <form class="form-horizontal center-block ewave-form" action="{:mac_url('user/bind')}" method="post" data-jump="{:mac_url('user/info')}">
+          <input type="hidden" name="ac" value="{$param.ac}">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{if $param.ac == 'phone'}手机号{else/}邮箱{/if}</label>
+            <div class="col-sm-8">
+              <div class="input-group">
+                <input type="text" class="form-control ewave-to" name="to" placeholder="请输入您的{if $param.ac == 'phone'}手机号{else/}邮箱{/if}" autocomplete="off">
+                <span class="input-group-btn">
+                  <input type="button" class="btn member-btn btn-theme ewave-send-code" value="获取验证码" data-action="{:mac_url('user/bindmsg')}"/>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">{if $param.ac == 'phone'}手机{else/}邮箱{/if}验证码</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="code" value="" placeholder="请输入接收到的验证码">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-8">
+              <button type="submit" class="btn member-btn btn-block btn-theme ewave-submit">提交修改</button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+{include file="user/foot" /}
+</body>
+</html>

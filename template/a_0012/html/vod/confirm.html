@@ -1,0 +1,25 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>使用积分购买权限</title>
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container mini-container ewave-full-height">
+  <div class="panel paner-default ewave-jump-msg text-center">
+    <div class="panel-header">
+      <h3 class="text-theme">亲爱的用户</h3>
+    </div>
+    <div class="panel-body">
+      <h4>{$popedom.msg}</h4>
+      <p>一次支付，永久观看，不重复扣费，谢谢支持</p>
+      <p class="pt-10"> {if empty($user.user_id)} <a href="javascript:;" class="mac_user ewave-input-item ewave-submit-btn">马上登录</a> {else/} <a class="ewave-input-item ewave-submit-btn" href="{:mac_url('user/buy')}" target="_blank">马上充值</a>&nbsp;<a class="ewave-input-item ewave-submit-btn" href="javascript:;" onclick="eWave.User.BuyPopedom(this)" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}" data-mid="{$maccms.mid}" data-type="{if $obj.player_info.flag eq 'play'}4{else/}5{/if}">确认购买</a> {/if} </p>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

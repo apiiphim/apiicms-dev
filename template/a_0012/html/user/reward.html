@@ -1,0 +1,59 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{php}$member_page='reward';{/php}
+<title>分销记录 - 会员中心 - {$maccms.site_name}</title>
+<meta name="keywords" content="分销记录">
+<meta name="description" content="分销记录">
+{include file="user/include" /}
+</head>
+<body>
+{include file="user/head" /} 
+<div class="container member-container clearfix">
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title">我的分销记录</h2>
+    <div class="member-tab-list" style="margin-bottom: 10px;">
+      <ul class="clearfix">
+        {if condition="$param.level eq ''"}
+        <li class="active">一级下线</li>
+        {else/}
+        <li><a href="{:mac_url('user/reward')}">一级下线</a></li>
+        {/if}
+        {if condition="$param.level eq '2'"}
+        <li class="active">二级下线</li>
+        {else/}
+        <li><a href="{:mac_url('user/reward')}?level=2">二级下线</a></li>
+        {/if}
+        {if condition="$param.level eq '3'"}
+        <li class="active">三级下线</li>
+        {else/}
+        <li><a href="{:mac_url('user/reward')}?level=3">三级下线</a></li>
+        {/if}
+      </ul>
+    </div>
+    <ul class="member-data member-data-reward">
+      {volist name="list" id="vo"}
+      <li class="member-data-item clearfix">
+        <div class="member-data-infobox clearfix">
+          <div class="member-data-cover"><a class="img-wrapper lazyload" data-original="{$vo.user_id|mac_get_user_portrait}" href="javascript:;" style="background-image: url({$maccms.path}static/images/touxiang.png);"></a></div>
+          <div class="member-data-info">
+            <h4>{$vo.user_name}</h4>
+            {if !empty($vo.user_nick_name)}
+            <p>昵称：{$vo.data.type.type_name}</p>
+            {/if}
+            <p>用户ID：<strong class="text-theme">{$vo.user_id}</strong></p>
+            <p>注册时间：{$vo.user_reg_time|mac_day}</p>
+          </div>
+        </div>
+      </li>
+      {/volist}
+    </ul>
+    {include file="user/paging"}
+  </div>
+</div>
+{include file="user/foot" /}
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{php}
+  if(!empty($obj['childids'])){
+    $parent_obj=$obj;
+  }elseif(!empty($obj['parent'])){
+    $parent_obj=$obj['parent'];
+  }
+{/php}
+<!DOCTYPE html>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+{include file="block/head"}
+<div class="container">
+  <div class="art-box row">
+    <div class="col-xs-12 col-xl-8">
+      <div class="layout-box clearfix gap">
+        <h2><a class="pull-left" href="{$obj|mac_url_type}">{$obj.type_name}</a> {if !empty($parent_obj.type_id)}
+          <div class="type"> <a class="hidden-xs hidden-sm hidden-md{if $obj.type_id==$parent_obj.type_id} active{/if}" href="{$parent_obj|mac_url_type}">{$parent_obj.type_name}</a> {maccms:type ids="child" flag="art" parent="'.$parent_obj['type_id'].'" by="sort" order="asc"} <a class="hidden-xs hidden-sm hidden-md{if $obj.type_id==$vo.type_id} active{/if}" href="{$vo|mac_url_type}">{$vo.type_name}</a> {/maccms:type} </div>
+          {/if} </h2>
+        <ul class="art-list clearfix">
+          {maccms:art half="3" paging="yes" num="20" type="'.$obj['type_id'].'" by="time" order="desc"}
+          {include file="block/art_item"}
+          {/maccms:art}
+        </ul>
+        {include file="block/paging"} </div>
+    </div>
+    <div class="hidden-xs hidden-sm hidden-md hidden-lg col-xl-4 ewave-sticky">
+      <div class="layout-box clearfix gap">
+        <div class="index-ranking">
+          <h2>热点{$obj.type_name}</h2>
+        </div>
+        <ul class="ranking-list">
+          {maccms:art num="10" type="current" by="hits_week" order="desc"}
+          <li class="ranking-item">{include file="block/art_item_ranking"}</li>
+          {/maccms:art}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{include file="block/foot"}
+</body>
+</html>

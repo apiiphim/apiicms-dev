@@ -1,0 +1,113 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{php}$member_page='index';{/php}
+<title>修改资料 - 会员中心 - {$maccms.site_name}</title>
+<meta name="keywords" content="修改资料">
+<meta name="description" content="修改资料">
+{include file="user/include"/}
+</head>
+<body>
+{include file="user/head"/}
+<div class="container member-container clearfix"> 
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title">我的资料</h2>
+    <div class="member-tab-list">
+      <ul class="clearfix">
+        <li><a href="{:mac_url('user/index')}">基本资料</a></li>
+        <li class="active">修改信息</li>
+        <li><a href="{:mac_url('user/popedom')}">我的权限</a></li>
+      </ul>
+    </div>
+    <div class="member-listcon">
+      <form class="form-horizontal center-block ewave-form" action="{:mac_url('user/info')}" method="post" data-jump="refresh-wait">
+        <div class="form-group">
+          <label class="col-xs-2 col-sm-2 control-label">用户名</label>
+          <div class="col-xs-10 col-sm-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$user.user_name}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">昵称</label>
+          <div class="col-sm-8 layer-col-12">
+            <input type="text" class="form-control empty-allowed" name="user_nick_name" value="{$user.user_nick_name}" placeholder="设置您的昵称">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">邮箱</label>
+          <div class="col-sm-8">
+            <div class="input-group">
+              <input type="text" class="form-control" name="user_email" value="{$obj.user_email|default='未绑定'}" readonly>
+              <span class="input-group-btn"> {if !empty($obj.user_email)}
+              <input type="button" class="btn member-btn btn-theme ewave-confirm" value="解绑" data-action="{:mac_url('user/unbind')}" data-tip="确认解除绑定吗？此操作不可恢复？" data-data="ac=email"/>
+              {else/} <a class="btn member-btn btn-theme" href="{:mac_url('user/bind',['ac'=>'email'])}">去绑定</a> {/if} </span> </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">手机号</label>
+          <div class="col-sm-8">
+            <div class="input-group">
+              <input type="text" class="form-control" name="user_phone" value="{$obj.user_phone|default='未绑定'}" readonly>
+              <span class="input-group-btn"> {if !empty($obj.user_phone)}
+              <input type="button" class="btn member-btn btn-theme ewave-confirm" value="解绑" data-action="{:mac_url('user/unbind')}" data-tip="确认解除绑定吗？此操作不可恢复？" data-data="ac=phone"/>
+              {else/} <a class="btn member-btn btn-theme" href="{:mac_url('user/bind',['ac'=>'phone'])}">去绑定</a> {/if} </span> </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">QQ号码</label>
+          <div class="col-sm-8 layer-col-12">
+            <input type="text" class="form-control empty-allowed" name="user_qq" value="{$user.user_qq}" placeholder="设置您的QQ">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">密保问题</label>
+          <div class="col-sm-8 layer-col-12">
+            <input type="text" class="form-control empty-allowed" name="user_question" value="{$user.user_question}" placeholder="设置您的密保问题">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">密保答案</label>
+          <div class="col-sm-8 layer-col-12">
+            <input type="text" class="form-control empty-allowed" name="user_answer" value="{$user.user_answer}" placeholder="设置您的密保答案">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">原密码</label>
+          <div class="col-sm-8 layer-col-12">
+            <input type="password" class="form-control" name="user_pwd" value="" placeholder="请输入您的当前密码">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">新密码</label>
+          <div class="col-sm-8 layer-col-12">
+            <input type="password" class="form-control empty-allowed" name="user_pwd1" value="" placeholder="不修改请留空">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">确认新密码</label>
+          <div class="col-sm-8 layer-col-12">
+            <input type="password" class="form-control empty-allowed" name="user_pwd2" value="" placeholder="不修改请留空">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-8">
+            <button type="submit" class="btn member-btn btn-block btn-theme ewave-submit">提交修改</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-8">
+            <p class="form-control-static text-center"> <a href="{if $GLOBALS.config.user.reg_phone_sms != 0 && !empty($user.user_phone)}{:mac_url('user/findpass_msg',['ac'=>'phone'])}{elseif $GLOBALS.config.user.reg_email_sms !=0 && !empty($user.user_email)/}{:mac_url('user/findpass_msg',['ac'=>'email'])}{else/}{:mac_url('user/findpass')}{/if}" target="_top"><i class="fa fa-lock"></i>&nbsp;忘记密码</a> </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{include file="user/foot"/}
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{php}$member_page='index';{/php}
+<title>会员中心 - {$maccms.site_name}</title>
+<meta name="keywords" content="会员中心">
+<meta name="description" content="会员中心">
+{include file="user/include" /}
+</head>
+<body>
+{include file="user/head" /}
+<div class="container member-container clearfix"> 
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title">我的资料</h2>
+    <div class="member-tab-list">
+      <ul class="clearfix">
+        <li class="active">基本资料</li>
+        <li><a href="{:mac_url('user/info')}">修改信息</a></li>
+        <li><a href="{:mac_url('user/popedom')}">我的权限</a></li>
+      </ul>
+    </div>
+    <div class="member-listcon">
+      <form class="form-horizontal center-block">
+        <div class="form-group">
+          <label class="col-xs-4 col-md-3 col-xl-2 control-label">用户名</label>
+          <div class="col-xs-8 col-md-9 col-xl-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$user.user_name}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-md-3 col-xl-2 control-label">所属用户组</label>
+          <div class="col-xs-8 col-md-9 col-xl-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$user.group.group_name}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-md-3 col-xl-2 control-label">会员期限</label>
+          <div class="col-xs-8 col-md-9 col-xl-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$obj.user_end_time|mac_day}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-md-3 col-xl-2 control-label">QQ号码</label>
+          <div class="col-xs-8 col-md-9 col-xl-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$user.user_qq|default="未录入"}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-md-3 col-xl-2 control-label">Email地址</label>
+          <div class="col-xs-8 col-md-9 col-xl-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$user.user_email|default="未绑定"}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-md-3 col-xl-2 control-label">注册时间</label>
+          <div class="col-xs-8 col-md-9 col-xl-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$user.user_reg_time|mac_day}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-md-3 col-xl-2 control-label">登录IP</label>
+          <div class="col-xs-8 col-md-9 col-xl-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$user.user_login_ip|long2ip}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-md-3 col-xl-2 control-label">登录时间</label>
+          <div class="col-xs-8 col-md-9 col-xl-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$user.user_login_time|mac_day}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-md-3 col-xl-2 control-label">账户积分</label>
+          <div class="col-xs-8 col-md-9 col-xl-10 layer-col-12">
+            <p class="form-control-static pt-xs-0">{$user.user_points}</p>
+          </div>
+        </div>
+        {if $GLOBALS['config']['user']['invite_reg_points'] gt 0}
+        <div class="form-group">
+          <label class="col-md-3 col-xl-2 control-label">推广注册链接</label>
+          <div class="col-md-9 col-xl-10 layer-col-12">
+            <div class="input-group">
+              <input type="text" class="form-control" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/reg',['uid'=>$obj.user_id])}" readonly onFocus="this.select();">
+              <span class="input-group-btn">
+              <input type="button" class="btn member-btn btn-theme ewave-copy-link" value="复制链接" data-url="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/reg',['uid'=>$obj.user_id])}"/>
+              </span> </div>
+          </div>
+        </div>
+        {/if}
+        {if $GLOBALS['config']['user']['invite_visit_points'] gt 0}
+        <div class="form-group">
+          <label class="col-md-3 col-xl-2 control-label">推广访问链接</label>
+          <div class="col-md-9 col-xl-10 layer-col-12">
+            <div class="input-group">
+              <input type="text" class="form-control" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/visit',['uid'=>$obj.user_id])}" readonly onFocus="this.select();">
+              <span class="input-group-btn">
+              <input type="button" class="btn member-btn btn-theme ewave-copy-link" value="复制链接" data-url="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/visit',['uid'=>$obj.user_id])}"/>
+              </span> </div>
+          </div>
+        </div>
+        {/if}
+      </form>
+    </div>
+  </div>
+</div>
+{include file="user/foot"/}
+</body>
+</html>

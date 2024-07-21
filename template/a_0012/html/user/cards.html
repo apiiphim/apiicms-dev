@@ -1,0 +1,47 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+{php}$member_page='orders';{/php}
+<title>充值卡使用记录 - 会员中心 -{$maccms.site_name}</title>
+<meta name="keywords" content="充值卡使用记录"/>
+<meta name="description" content="充值卡使用记录"/>
+{include file="user/include"/}
+</head>
+<body>
+{include file="user/head"/} 
+<div class="container member-container clearfix">
+  {include file="user/left"}
+  <div class="member-right">
+    <h2 class="member-title">充值记录</h2>
+    <div class="member-tab-list">
+      <ul class="clearfix">
+        <li ><a href="{:mac_url('user/orders')}">在线充值记录</a></li>
+        <li class="active">充值卡使用记录</li>
+      </ul>
+    </div>
+    <table class="table">
+      <tr>
+        <td class="hidden-xs" style="width:60px;">编号</td>
+        <td>卡号</td>
+        <td style="width:60px;">面值</td>
+        <td style="width:60px;">积分</td>
+        <td class="hidden-xs" style="width:150px;">使用时间</td>
+      </tr>
+      {volist name="list" id="vo"}
+      <tr>
+        <td class="hidden-xs">{$vo.card_id}</td>
+        <td class="pad">{$vo.card_no}</td>
+        <td>{$vo.card_money}</td>
+        <td>{$vo.card_points}</td>
+        <td class="hidden-xs">{$vo.card_use_time|mac_day}</td>
+      </tr>
+      {/volist}
+    </table>
+    {include file="user/paging"}
+  </div>
+</div>
+{include file="user/foot"/}
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<div class="container">
+  <div class="banner-layout-box gap ewave-banner-box ewave-remove-box">
+    <div class="ewave-banner-wrapper ewave-remove-list" id="banner-bottom"></div>
+    <script src="{$maccms.path_ads}banner_bottom.js"></script>
+  </div>
+</div>
+<div class="bottom">
+  <div class="container">
+    <p class="hidden-xs"> <a href="{:mac_url('label/new')}">Phim mới</a> <i>|</i> <a href="{:mac_url('map/index')}">Sơ đồ trang</a> <i>|</i> <a href="{:mac_url('rss/index')}">Rss</a> <i>|</i> <a href="{:mac_url('rss/baidu')}">Rss Baidu</a> <i>|</i> <a href="{:mac_url('rss/google')}">Rss Google</a> <i>|</i> <a href="{:mac_url('rss/bing')}">Rss Bing</a> <i>|</i> <a href="{:mac_url('rss/so')}">Rss So</a> <i>|</i> <a href="{:mac_url('rss/sogou')}">Rss Sogou</a> <i>|</i> <a href="{:mac_url('rss/sm')}">Rss Sm</a> </p>
+    <p>Tất cả phim và hình ảnh trên trang web được sưu tầm từ Internet, bản quyền thuộc về tác giả gốc, chúng tôi chỉ cung cấp dịch vụ phát lại, không cung cấp kho lưu trữ phim và không tham gia ghi hình.</p>
+    <p>Copyright © {:date(Y)} {$maccms.site_name}({$maccms.site_url}) All Rights Reserved</p>
+  </div>
+  <div class="ewave-banner-box float-bottom clearfix hidden-lg hidden-xl hidden-xxl ewave-remove-box">
+    <div class="ewave-banner-wrapper ewave-remove-list" id="float-bottom"></div>
+    <a class="ewave-banner-close"><i class="fa fa-close"></i></a>
+    <script src="{$maccms.path_ads}float_bottom.js"></script>
+  </div>
+  <div class="bottom-placeholder"></div>
+</div>
+<div class="fixedbar-fixed-bar">
+  <div class="ant-back-top"> <i class="fa fa-angle-up"></i> <span class="fixedbar-top">顶部</span> <a href="javascript:void(0);" class="fixedbar-top-link"></a> </div>
+  <div class="type hidden-xs hidden-sm hidden-md">
+    {maccms:type ids="parent" flag="vod" by="sort" order="asc"}
+    <a href="javascript:void(0);" class="fixedbar-anchor-text" data-id="#index-vod-{$vo.type_id}">{$vo.type_name}</a>
+    {/maccms:type}
+    {if mac_data_count(0,'all','actor') gt 0}
+    <a href="javascript:void(0);" class="fixedbar-anchor-text" data-id="#index-actor">明星库</a>
+    {/if}
+    {maccms:type ids="parent" flag="art" by="sort" order="asc"}
+    <a href="javascript:void(0);" class="fixedbar-anchor-text" data-id="#index-art-{$vo.type_id}">{$vo.type_name}</a>
+    {/maccms:type}
+    {if mac_data_count(0,'all','topic') gt 0}
+    <a href="javascript:void(0);" class="fixedbar-anchor-text" data-id="#index-topic">精彩专题</a>
+    {/if}
+  </div>
+  <div class="skin-switch">
+    <a class="light" href="javascript:;" title="切换至亮色模式"><span class="fa fa-sun-o"></span></a>
+    <a class="dark" href="javascript:;" title="切换至暗色模式"><span class="fa fa-moon-o"></span></a>
+  </div>
+</div>
+<div style="display:none;">{$maccms.site_tj}</div>

@@ -1,0 +1,38 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+{if !empty($obj.vod_play_list)}
+      <div class="playlist-box layout-box gap">
+        {if $obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] elt 2 && $GLOBALS['config']['app']['copyright_status'] != 0}
+        <div class="ewave-copyright-notice">{if !empty($obj.vod_jumpurl)}<a href="{$obj.vod_jumpurl}" target="_blank">{$GLOBALS['config']['app']['copyright_notice']|default='Do vấn đề bản quyền, bạn không thể xem phim này'}</a>{else/}{$GLOBALS['config']['app']['copyright_notice']|default='Do vấn đề bản quyền, bạn không thể xem phim này'}{/if}</div>
+        {else/}
+        <div class="playlist-tab-box">
+          <h2 class="hidden-xs">Danh sách tập</h2>
+          <div class="playlist-tab ewave-swiper ewave-swiper-nav">
+            <ul class="swiper-wrapper">
+              {php}$playlist_index=1;{/php}
+              {maccms:foreach name="obj.vod_play_list" id="vo"}
+              <li class="swiper-slide ewave-tab{if ($maccms.aid==14 && $playlist_index==1) || ($maccms.aid==15 && $vo.sid==$param.sid)} active{/if}" data-target="#ewave-playlist-{$vo.sid}">{$vo.player_info.show}<em></em></li>
+              {php}$playlist_index++;{/php}
+              {/maccms:foreach}
+            </ul>
+          </div>
+          <div class="right ewave-sort" data-target=".ewave-playlist-sort-content:visible"><span><i class="fa fa-sort-amount-asc"></i></span>Lọc</div>
+        </div>
+        <div class="episode-box scrollbar">
+          {php}$playlist_index=1;{/php}
+          {maccms:foreach name="obj.vod_play_list" id="vo"}
+          <ul class="row ewave-tab-content ewave-playlist-content ewave-playlist-sort-content" id="ewave-playlist-{$vo.sid}"{if ($maccms.aid==14 && $playlist_index==1) || ($maccms.aid==15 && $vo.sid==$param.sid)}{else/} style="display:none;"{/if}>
+            {maccms:foreach name="vo.urls" id="vo2"}
+            <li class="col-xs-4 col-sm-3 col-md-2 ewave-playlist-item {if $vo.url_count lt 6} ewave-width-auto{/if}"><a class="text-overflow{if $maccms.aid==15 && $vo.sid==$param.sid && $vo2.nid==$param.nid} active{/if}" href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">{$vo2.name}</a></li>
+            {/maccms:foreach}
+          </ul>
+          {php}$playlist_index++;{/php}
+          {/maccms:foreach}
+        </div>
+        {/if}
+      </div>
+      <div class="banner-layout-box gap ewave-banner-box ewave-remove-box">
+        <div class="ewave-banner-wrapper ewave-remove-list" id="detail-banner-1"></div>
+        <script src="{$maccms.path_ads}detail_banner_1.js"></script>
+      </div>
+      {/if}

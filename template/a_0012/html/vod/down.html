@@ -1,0 +1,41 @@
+<!-- /*                    模板馆专业苹果cms模板下载  www.iqmbg.com                          */ -->
+<!-- /* 此模板仅限用于学习和研究目的；不得将上述内容用于商业或者非法用途，否则，一切后果请用户自负。 */ -->
+<!DOCTYPE HTML>
+<html>
+<head>
+{include file="block/seo"}
+{include file="block/include"}
+</head>
+<body>
+<div class="site-main spimes-container">
+  {include file="block/head"}
+  <div class="container">
+    <main class="site-main">
+      <div class="contpost2 gap">
+        <div class="row">
+          <div class="col-md-9">
+            <article class="post detail-post clearfix">
+              {include file="block/vod_detail_info"}
+            </article>
+          </div>
+          <div class="col-md-3">
+            {include file="block/star"}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          {include file="block/vod_downlist"}
+          {include file="block/vod_desc"}
+          {include file="block/vod_related"}
+          {include file="block/comment"}
+        </div>
+        {include file="block/vod_sidebar"}
+       </div>
+    </main>
+  </div>
+  {include file="block/foot"}
+</div>
+<span class="mac_hits hide" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="insert"></span>
+</body>
+</html>
