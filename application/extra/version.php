@@ -2,7 +2,7 @@
 return array (
     'name' => 'ApiiCMS',
     'copyright' => 'ApiiCMS',
-    'url' => '//github.com/apiiphim/ramcms',
+    'url' => '//gitlab.com/dat6969/apiicms ',
     'code' => '3.0',
     'license' => 'MIT',
 );
