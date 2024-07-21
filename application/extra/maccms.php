@@ -18,7 +18,7 @@ return array (
   'site' => 
   array (
     'site_name' => 'ApiiOnline',
-    'site_url' => 'http://ramcms_phim1.test',
+    'site_url' => 'https://apii.online',
     'site_keywords' => 'Từ kho&aacute; cho website của bạn',
     'site_description' => 'Thẻ m&ocirc; tả website của bạn',
     'site_email' => 'test@apii.online',
