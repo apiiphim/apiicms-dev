@@ -40,20 +40,20 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style=" width: 110px; ">{:lang('account')}</label>
-            <div class="layui-input-block">
+            <div class="layui-input-block" style=" margin-left: 110px; ">
                 <input type="text" name="admin_name" class="layui-input" lay-verify="admin_name" placeholder="" autocomplete="on" maxlength="20"/>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label" style=" width: 110px; ">{:lang('pass')}:</label>
-            <div class="layui-input-block">
+            <div class="layui-input-block" style=" margin-left: 110px; ">
                 <input type="password" name="admin_pwd" class="layui-input" lay-verify="admin_pwd" placeholder="" maxlength="20"/>
             </div>
         </div>
         {if condition="$GLOBALS['config']['app']['admin_login_verify'] neq '0'"}
         <div class="layui-form-item">
             <label class="layui-form-label" style=" width: 110px; ">{:lang('verify')}:</label>
-            <div class="layui-input-block">
+            <div class="layui-input-block" style=" margin-left: 110px; ">
                 <input type="number" name="verify" class="layui-input" lay-verify="verify" placeholder="" maxlength="4"  max="9999"/><img id="verify_img" src="__ROOT__/index.php/verify/index.html" onclick="this.src = this.src+'?'">
             </div>
         </div>
