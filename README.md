@@ -6,7 +6,6 @@ ví USDT TRC20 : TNAaEjUsWFaZLNhdooM3Aqs1kcUacFsZRE
 # Hướng dẫn cài đặt
 - Up lên host hoặc vps
 - Giải nén
-- Thay đổi thư mục upload-xóa đoạn này thành upload ( cái này vì e code trên máy k cho up cả ảnh :v)
 - Chạy tên miền đã thêm
 - Cài đặt theo hướng dẫn
 - Sửa truy cập admin từ 69.php thành gì tùy ý bạn để bảo mật
