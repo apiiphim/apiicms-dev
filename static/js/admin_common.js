@@ -235,7 +235,7 @@ layui.define(['element', 'form'], function(exports) {
     form.on('switch(switchStatus)', function(data) {
         var that = $(this), status = 0;
         if (!that.attr('data-href')) {
-            layer.msg('请设置data-href参数');
+            layer.msg('Vui lòng đặt tham số data-href');
             return false;
         }
         if (this.checked) {
@@ -391,7 +391,7 @@ layui.define(['element', 'form'], function(exports) {
         if (_val == '') return false;
         if (that.attr('data-value') == _val) return false;
         if (!that.attr('data-href')) {
-            layer.msg('请设置data-href参数');
+            layer.msg('Vui lòng đặt tham số data-href');
             return false;
         }
         $.post(that.attr('data-href'), {val:_val}, function(res) {
