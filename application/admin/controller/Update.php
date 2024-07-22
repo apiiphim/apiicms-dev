@@ -12,8 +12,7 @@ class Update extends Base
     {
         parent::__construct();
         //header('X-Accel-Buffering: no');
-
-        $this->_url = "https://github.com/apiiphim/apiicms_update/raw/master/";
+        $this->_url = "https://github.com/apiiphim/apiicms_update/raw/main/";
         $this->_save_path = './application/data/update/';
     }
 
@@ -28,14 +27,14 @@ class Update extends Base
             return $this->error(lang('param_err'));
         }
         $version = config('version.code');
-        $url = 'https://github.com/apiiphim/apiicms_update/raw/main/apiicms_update.zip?t='.time();
-
+        $version_new = $version + 1;
+        $url = $this->_url.$version_new.'.zip?t='.time();
         echo $this->fetch('admin@public/head');
         echo "<div class='update'><h1>".lang('admin/update/step1_a')."</h1><textarea rows=\"25\" class='layui-textarea' readonly>".lang('admin/update/step1_b')."\n";
         ob_flush();flush();
         sleep(1);
 
-        $save_file = $version.'.zip';
+        $save_file = $version_new.'.zip';
         
         $html = mac_curl_get($url);
         @fwrite(@fopen($this->_save_path.$save_file,'wb'),$html);
