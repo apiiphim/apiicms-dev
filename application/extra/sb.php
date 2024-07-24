@@ -10,7 +10,7 @@ return array (
       'pic' => 'template/dianyingim/img/loading.png',
       'gg' => 'Bạn đang xem phim tại ramcms',
       'txt' => '<p>Phim inguon</p>
-<p>Cảm ơn Admin Ramcms: @brevis_ng</p>
+<p>Cảm ơn Admin Ramcms: @Brevisnguyen</p>
 <p>APIICMS được phát triển dựa trên Ramcms tiền thân là Maccms</p>
 <p>Nhóm Tele hỗ trợ: <a href="https://t.me/apiionlines" target="_blank"><strong>Bấm vào đây để nhanh chóng tham gia trò chuyện nhóm</strong></a>',
       'zhizhang' => 'Cảm ơn bạn đã xem phim tại APII.Online, chia sẻ để mình có động lực up nhiều phim hay hơn ạ 😊',

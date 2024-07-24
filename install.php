@@ -1,6 +1,6 @@
 <?php
 /*
-Cảm ơn Admin Ramcms: @brevis_ng
+Cảm ơn Admin Ramcms: @Brevisnguyen
 ApiiCms được phát triển dựa trên Ramcms tiền thân là Maccms, ApiiCms với nhiều cải tiến và sửa lỗi mới giúp cho các bạn tạo lập website chia sẻ video cá nhân miễn phí.
 Nhóm Tele hỗ trợ ApiiCms: Tham gia ngay https://t.me/apiionlines
 APIICMS dành cho mục đích học tập và nghiên cứu, vui lòng không kinh doanh và tuân thủ luật pháp nước CHXHCN Việt Nam!

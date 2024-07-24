@@ -803,7 +803,7 @@ https://www.baidu.com/123.jpg',
     'admin/index/welcome/filed_login_num' =>'Số lần đăng nhập',
     'admin/index/welcome/filed_last_login_ip' =>'IP login lần trước',
     'admin/index/welcome/filed_last_login_time' =>'Thời gian đăng nhập lần trước',
-    'admin/index/welcome/tip_warn' =>'<p>Cảm ơn Admin Ramcms: @brevis_ng</p><p>ApiiCms được phát triển dựa trên Ramcms tiền thân là Maccms, ApiiCms với nhiều cải tiến và sửa lỗi mới giúp cho các bạn tạo lập website chia sẻ video cá nhân miễn phí.</p><p><b>Nhóm Tele hỗ trợ ApiiCms:</b> <a href="https://t.me/apiionlines" target="_blank"><i>Tham gia ngay</i></a><br> <strong>APIICMS dành cho mục đích học tập và nghiên cứu, vui lòng không kinh doanh và tuân thủ luật pháp nước CHXHCN Việt Nam</strong>!',
+    'admin/index/welcome/tip_warn' =>'<p>Cảm ơn Admin Ramcms: @Brevisnguyen</p><p>ApiiCms được phát triển dựa trên Ramcms tiền thân là Maccms, ApiiCms với nhiều cải tiến và sửa lỗi mới giúp cho các bạn tạo lập website chia sẻ video cá nhân miễn phí.</p><p><b>Nhóm Tele hỗ trợ ApiiCms:</b> <a href="https://t.me/apiionlines" target="_blank"><i>Tham gia ngay</i></a><br> <strong>APIICMS dành cho mục đích học tập và nghiên cứu, vui lòng không kinh doanh và tuân thủ luật pháp nước CHXHCN Việt Nam</strong>!',
 
     'admin/index/quick_tit'=>'Tự định nghĩa danh sách',
     'admin/index/title'=>'ApiiCMS',
