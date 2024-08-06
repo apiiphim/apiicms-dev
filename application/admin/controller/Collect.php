@@ -1289,8 +1289,14 @@ class Collect extends Base
 	protected function create_data_nguonc_goc($movie, $flag) {
 		$arrCat = array_map(function($cat) { return $cat['name']; }, $movie['category']['2']['list']);
 
-		$arrCountry = array_column($movie['category']['4']['list'], 'name');
-
+	        $arrCountry = array_column($movie['category']['4']['list'], 'name');
+	        $arrYear = $movie['category']['3']['list'][0]['name'];
+	
+	        if (is_numeric($arrCountry[0])) {
+	            $arrCountry = array_column($movie['category']['3']['list'], 'name');
+	            $arrYear = $movie['category']['4']['list'][0]['name'];
+	        }
+		
 		$arrActors = !empty($movie['casts']) ? (is_array($movie['casts']) ? $movie['casts'] : explode(", ", $movie['casts'])) : ["Đang cập nhật"];
 		$director = !empty($movie['director']) ? $movie['director'] : "Đang cập nhật";
 		
@@ -1327,7 +1333,7 @@ class Collect extends Base
 			'vod_remarks' => $movie['current_episode'],
 			'vod_area' => implode(",", $arrCountry),
 			'vod_lang' => $movie['language'],
-			'vod_year' => $movie['category']['3']['list'][0]['name'],
+			'vod_year' => $arrYear,
 			'vod_version' => $movie['quality'],
 			'vod_duration' => $movie['time'],
 			'vod_time' => time(),
