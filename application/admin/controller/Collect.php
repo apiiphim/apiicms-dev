@@ -1376,7 +1376,6 @@ class Collect extends Base
 
 
     // Kết thúc APII
-
     protected function add_movie($title, $year, $ophim_id, $sourcePage, $filterType = [], $filterCategory = [])
     {
         try {
@@ -1400,10 +1399,11 @@ class Collect extends Base
                 }
             }
 
-            $where = [];
-            $where['vod_name'] = mac_filter_xss($title);
-            $where['vod_year'] = $year;
-            $where['vod_writer'] = $ophim_id;
+            $where = [
+                'vod_name' => mac_filter_xss($title),
+                'vod_year' => $year,
+                'vod_writer' => $ophim_id
+            ];
             $info = model('Vod')->where($where)->find();
 
             $vod_search = model('VodSearch');
