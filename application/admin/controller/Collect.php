@@ -1570,50 +1570,38 @@ class Collect extends Base
             $play_from_m3u8 = '';
             $vod_embed = [];
             $vod_m3u8 = [];
-            if (stripos($server['server_name'], '[NC] Thuyết Minh') !== false || stripos($server['server_name'], '[NC] Lồng Tiếng') !== false) {
-                $play_from_embed = 'thuyetminh';
-                $play_from_m3u8 = 'thuyetminhm3u8';
+            if (stripos($server['server_name'], 'Thuyết Minh') !== false || stripos($server['server_name'], 'Lồng Tiếng') !== false) {
+                $play_from_embed = 'embed7';
+                $play_from_m3u8 = 'hls7';
                 $play_from_server = 'server0';
-            } elseif (stripos($server['server_name'], '[OP] Thuyết Minh') !== false || stripos($server['server_name'], '[OP] Lồng Tiếng') !== false) {
-                $play_from_embed = 'thuyetminh';
-                $play_from_m3u8 = 'thuyetminhm3u8';
+            } elseif (strpos($server['server_name'], '[SV #1]') !== false) {
+                $play_from_embed = 'embed1';
+                $play_from_m3u8 = 'hls1';
                 $play_from_server = 'server1';
-            } elseif (stripos($server['server_name'], '[KK] Thuyết Minh') !== false || stripos($server['server_name'], '[KK] Lồng Tiếng') !== false) {
-                $play_from_embed = 'thuyetminh';
-                $play_from_m3u8 = 'thuyetminhm3u8';
-                $play_from_server = 'server3';
-            } elseif (strpos($server['server_name'], '[NC]') !== false) {
-                $play_from_embed = 'nguonc';
-                // $play_from_m3u8 = 'nguoncm3u8'; // Tắt thằng mặt lồn nguồnc hls này
+            } elseif (strpos($server['server_name'], '[SV #2]') !== false) {
+                $play_from_embed = 'embed2';
+                $play_from_m3u8 = 'hls2';
                 $play_from_server = 'server2';
-            } elseif (strpos($server['server_name'], '[OP]') !== false) {
-                $play_from_embed = 'ophim';
-                $play_from_m3u8 = 'ophimm3u8';
-                $play_from_server = 'server1';
-            } elseif (strpos($server['server_name'], '[KK]') !== false) {
-                $play_from_embed = 'kkphim';
-                $play_from_m3u8 = 'kkphimm3u8';
+            } elseif (strpos($server['server_name'], '[SV #3]') !== false) {
+                $play_from_embed = 'embed3';
+                $play_from_m3u8 = 'hls3';
                 $play_from_server = 'server3';
-            } elseif (stripos($server['server_name'], 'Thuyết Minh') !== false || stripos($server['server_name'], 'Lồng Tiếng') !== false) {
-                $play_from_embed = 'thuyetminh';
-                $play_from_m3u8 = 'thuyetminhm3u8';
-                $play_from_server = 'server0';
-            } elseif (strpos($server['server_name'], '#1') !== false) {
-                $play_from_embed = 'thuongduphong1';
-                $play_from_m3u8 = 'thuong1';
-                $play_from_server = 'server0';
-            } elseif (strpos($server['server_name'], '#2') !== false) {
-                $play_from_embed = 'thuongduphong2';
-                $play_from_m3u8 = 'thuong2';
-                $play_from_server = 'server0';
-            } elseif (strpos($server['server_name'], '[VIP]') !== false || strpos($server['server_name'], '[APII]') !== false) {
-                $play_from_embed = 'vipapii';
-                $play_from_m3u8 = 'vipapiim3u8';
+            } elseif (strpos($server['server_name'], '[SV #4]') !== false) {
+                $play_from_embed = 'embed4';
+                $play_from_m3u8 = 'hls4';
                 $play_from_server = 'server4';
+            } elseif (strpos($server['server_name'], '[SV #5]') !== false) {
+                $play_from_embed = 'embed5';
+                $play_from_m3u8 = 'hls5';
+                $play_from_server = 'server5';
+            } elseif (strpos($server['server_name'], '[SV #6]') !== false) {
+                $play_from_embed = 'embed6';
+                $play_from_m3u8 = 'hls6';
+                $play_from_server = 'server6';
             } else {
-                $play_from_embed = 'thuongduphong1';
-                $play_from_m3u8 = 'thuong1';
-                $play_from_server = 'server0';
+                $play_from_embed = 'embed1';
+                $play_from_m3u8 = 'hls1';
+                $play_from_server = 'server1';
             }
 
             // Xử lý server_data
