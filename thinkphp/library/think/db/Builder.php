@@ -382,7 +382,6 @@ abstract class Builder
         } elseif ('LIKE' == $exp || 'NOT LIKE' == $exp) {
             // 模糊匹配
             if (is_array($value)) {
-                $array = [];
                 foreach ($value as $item) {
                     $array[] = $key . ' ' . $exp . ' ' . $this->parseValue($item, $field);
                 }

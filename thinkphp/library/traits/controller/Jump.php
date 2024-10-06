@@ -43,12 +43,16 @@ trait Jump
         }
 
         $type = $this->getResponseType();
+        $jump = lang('install/jump_button')?lang('install/jump_button'):'跳转';
+        $notice = lang('install/jump_time')?lang('install/jump_time'):'页面自动跳转 等待时间：';
         $result = [
             'code' => 1,
             'msg'  => $msg,
             'data' => $data,
             'url'  => $url,
             'wait' => $wait,
+            'jump' => $jump,
+            'notice' => $notice,
         ];
 
         if ('html' == strtolower($type)) {
@@ -84,12 +88,16 @@ trait Jump
         }
 
         $type = $this->getResponseType();
+        $jump = lang('install/jump_button')?lang('install/jump_button'):'跳转';
+        $notice = lang('install/jump_time')?lang('install/jump_time'):'页面自动跳转 等待时间：';
         $result = [
             'code' => 0,
             'msg'  => $msg,
             'data' => $data,
             'url'  => $url,
             'wait' => $wait,
+            'jump' => $jump,
+            'notice' => $notice,
         ];
 
         if ('html' == strtolower($type)) {
