@@ -1347,7 +1347,7 @@ class Collect extends Base
 		if ($movie["status"] == 'trailer') {
 			$data += ['vod_play_from' => '', 'vod_play_server' => '', 'vod_play_note' => ''];
 		} else {
-			$data += ['vod_play_from' => 'nguonc$$$nguoncm3u8', 'vod_play_server' => 'server2$$$server2', 'vod_play_note' => '$$$'];
+			$data += ['vod_play_from' => 'embed1$$$hls1', 'vod_play_server' => 'server1$$$server1', 'vod_play_note' => '$$$'];
 		}
 
 		if ($flag == 'u') {
