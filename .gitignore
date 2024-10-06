@@ -15,3 +15,4 @@ node_modules/
 /upload/vod/*
 cron.php
 application/data/install/install.lock
+application/extra/maccms.php

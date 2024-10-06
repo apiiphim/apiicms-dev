@@ -193,7 +193,7 @@ return array (
   'interface' => 
   array (
     'status' => 0,
-    'pass' => '5C4OZ8RUV7G89857',
+    'pass' => 'B5B6A35FA3MDJMY7',
     'vodtype' => '动作片=动作',
     'arttype' => '头条=头条',
     'actortype' => '',
